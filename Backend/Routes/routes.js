@@ -408,7 +408,7 @@ async function addChapterPost(req, res) {
   } catch (err) {
     console.log(err);
 
-    await fs.unlink(`images/${createdChapter.image}`).catch();
+    await fs.unlink(`${config.IMAGE_PATH}/${createdChapter.image}`).catch();
 
     res.status(403).json(err.message);
   }
@@ -525,9 +525,9 @@ const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
       if (file.fieldname === "image") {
-        cb(null, "images");
+        cb(null, `${config.IMAGE_PATH}`);
       } else if (file.fieldname === "video") {
-        cb(null, "videos");
+        cb(null, `${config.VIDEO_PATH}`);
       }
     },
     filename: function (req, file, cb) {
@@ -931,9 +931,9 @@ async function uploadLessonPost(req, res) {
     try {
       await transaction.rollback();
 
-      await fs.unlink(`videos/${video}`).catch();
+      await fs.unlink(`${config.VIDEO_PATH}/${video}`).catch();
 
-      await fs.unlink(`images/${image}`).catch();
+      await fs.unlink(`${config.IMAGE_PATH}/${image}`).catch();
     } catch (err) {}
     return res.status(400).json(err.message);
   }
@@ -1186,16 +1186,16 @@ async function deleteLessonDELETE(req, res) {
     let deletePromises = questions.map(async (question) => {
       console.log(question.image);
 
-      return fs.unlink(`images/${question.image}`).catch();
+      return fs.unlink(`${config.IMAGE_PATH}/${question.image}`).catch();
     });
 
     const image = lesson.image;
 
     const video = lesson.video;
 
-    deletePromises.push(fs.unlink(`images/${image}`).catch());
+    deletePromises.push(fs.unlink(`${config.IMAGE_PATH}/${image}`).catch());
 
-    deletePromises.push(fs.unlink(`videos/${video}`).catch());
+    deletePromises.push(fs.unlink(`${config.VIDEO_PATH}/${video}`).catch());
 
     await Promise.allSettled(deletePromises);
 
@@ -1234,9 +1234,9 @@ async function deleteChapterDELETE(req, res) {
     const image = findFromDB.image;
 
     try {
-      await fs.access(`images/${image}`);
+      await fs.access(`${config.IMAGE_PATH}/${image}`);
 
-      await fs.unlink(`images/${image}`);
+      await fs.unlink(`${config.IMAGE_PATH}/${image}`);
     } catch (err) {
       console.log(err.message);
     }
@@ -1319,7 +1319,7 @@ async function deleteQuestion(req, res) {
     const thisQuestion = await Question.findByPk(id);
 
     try {
-      await fs.unlink(`images/${thisQuestion.image}`);
+      await fs.unlink(`${config.IMAGE_PATH}/${thisQuestion.image}`);
     } catch (err) {
       console.log(err.message);
     }
@@ -1369,7 +1369,7 @@ async function addQuestion(req, res) {
 
     res.status(200).json(response);
   } catch (err) {
-    await fs.unlink(`images/${image}`).catch();
+    await fs.unlink(`${config.IMAGE_PATH}/${image}`).catch();
 
     res.status(400).json(err.message);
   }

@@ -85,9 +85,9 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use("/api/videos", express.static('videos'));
+app.use("/api/videos", express.static(config.VIDEO_PATH));
 
-app.use("/api/images", express.static("images"));
+app.use("/api/images", express.static(config.IMAGE_PATH));
 
 app.use(cookieParser());
 
