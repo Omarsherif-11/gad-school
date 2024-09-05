@@ -550,7 +550,7 @@ const upload = multer({
 ]);
 
 function videoFileFilter(file, cb) {
-  const filetypes = /mp4|mov|avi|mkv|quicktime|hevc/; //regex
+  const filetypes = /mp4|mov|avi|mkv|quicktime|hevc|m4v/; //regex
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = filetypes.test(file.mimetype);
 
