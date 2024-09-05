@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteLesson } from "../api/auth";
 import { useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 import { API_URL } from "../api/auth";
 

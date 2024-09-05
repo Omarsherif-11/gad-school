@@ -5,7 +5,7 @@ import QuestionCard from "./QuestionCard";
 import axios from "axios";
 import { addQuestion } from "../api/auth";
 import ScoresTable from "./ScoresTable";
-
+import Spinner from "react-bootstrap/Spinner";
 import { axiosInstance } from "../api/auth";
 
 function Quiz() {
