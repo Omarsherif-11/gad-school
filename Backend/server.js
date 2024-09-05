@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 
 const config = require('../Backend/config.js');
 
-const sequelize = new Sequelize("gad", "root", config.DB_PASSWORD, {
+const sequelize = new Sequelize("gad", "rahim", config.DB_PASSWORD, {
   host: "127.0.0.1",
   dialect: "mysql",
 });
