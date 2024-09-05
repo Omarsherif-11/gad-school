@@ -1,0 +1,114 @@
+.quiz-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-primary);
+}
+
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.quiz-title {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  flex: 1;
+  text-align: center;
+}
+
+.question-index {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-color);
+}
+
+.question-card {
+  margin-bottom: var(--spacing-lg);
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--input-border-radius);
+  padding: var(--spacing-md);
+}
+
+.question-image {
+  max-width: 100%;
+  margin-bottom: var(--spacing-md);
+}
+
+.question-text {
+  font-size: 1.6rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.option {
+  background: var(--input-background);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  padding: var(--spacing-md);
+  cursor: not-allowed; /* Disable cursor to indicate no interaction */
+  transition: background-color 0.3s, color 0.3s;
+  color: var(--text-color); /* Ensure text color is set */
+}
+
+.option.correct {
+  background: green; /* Background color for correct answers */
+  color: #fff; /* White text color */
+}
+
+.option.incorrect {
+  background: red; /* Background color for incorrect answers */
+  color: #fff; /* White text color */
+}
+
+/* Ensure contrast in dark mode */
+body[data-theme='dark'] .option {
+  background: var(--dark-input-background); /* Adjust background for dark mode */
+  color: var(--dark-text-color); /* Ensure text color is visible */
+}
+
+body[data-theme='dark'] .option.correct {
+  background: #004d00; /* Darker green for dark mode */
+  color: #fff; /* White text */
+}
+
+body[data-theme='dark'] .option.incorrect {
+  background: #660000; /* Darker red for dark mode */
+  color: #fff; /* White text */
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between; /* Aligns "Previous" to the left and "Next" to the right */
+  margin-top: var(--spacing-lg);
+}
+
+.nav-button {
+  background: var(--button-background);
+  color: var(--button-color);
+  padding: var(--button-padding);
+  border-radius: var(--button-border-radius);
+}
+
+
+
+
+.back-button {
+  margin-right: 1rem;
+}
+
+
+.question-image {
+  max-width: 100%;
+  margin-bottom: var(--spacing-md);
+}

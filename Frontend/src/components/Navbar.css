@@ -1,0 +1,175 @@
+/* General Navbar Styles */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  background-color: var(--primary-color);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--secondary-color);
+  position: relative;
+  font-family: var(--font-primary);
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+.brand a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.brand a:hover {
+  color: var(--accent-color);
+}
+
+
+
+.hamburger {
+  display: none; 
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-lg);
+}
+
+.nav-item {
+  color: var(--secondary-color);
+  font-size: 18px;
+  margin: 0;
+}
+
+.nav-item a, .navbar-button {
+  color: var(--secondary-color);
+  text-decoration: none;
+  padding: var(--spacing-sm);
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: var(--button-border-radius);
+}
+
+.nav-item a:hover, .navbar-button:hover {
+  color: var(--accent-color);
+  background-color: rgba(71, 255, 200, 0.1);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.nav-welcome {
+  color: var(--secondary-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.navbar-button {
+  padding: var(--button-padding);
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.navbar-button:hover {
+  background-color: rgba(71, 255, 200, 0.8);
+  color: var(--primary-color);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-button:active {
+  background-color: rgba(71, 255, 200, 0.6);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme Switcher Styles */
+.theme-switch {
+  display: flex;
+  align-items: center;
+  cursor: pointer; /* Make the icon clickable */
+}
+
+.theme-switch .icon {
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.theme-switch .sun-icon {
+  color: var(--light-theme-sun-color);
+}
+
+.theme-switch .moon-icon {
+  color: var(--light-theme-moon-color);
+}
+
+.theme-switch.dark-mode .sun-icon {
+  color: var(--dark-theme-sun-color);
+}
+
+.theme-switch.dark-mode .moon-icon {
+  color: var(--dark-theme-moon-color);
+}
+
+.theme-switch .hidden {
+  display: none;
+}
+
+.theme-switch .visible {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Show hamburger menu on small screens */
+  }
+
+  .nav-list {
+    display: none; /* Hide navigation links on small screens */
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: var(--primary-color);
+    width: 100%;
+    max-width: 300px;
+    height: 100vh;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+    z-index: 1000;
+  }
+
+  .nav-list.open {
+    display: flex; /* Show navigation links when menu is open */
+    transform: translateX(0);
+  }
+
+  .nav-actions {
+    flex-direction: column;
+  }
+
+  .navbar-button {
+    width: 100%;
+  }
+}

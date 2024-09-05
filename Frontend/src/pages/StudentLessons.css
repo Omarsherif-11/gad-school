@@ -1,0 +1,31 @@
+.lessons-container {
+  padding-top: 120px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  font-family: var(--font-primary);
+}
+
+.lessons-col {
+  max-width: 900px;
+  width: 100%;
+}
+
+.custom-checkbox {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.lesson-card {
+  max-width: 400px; 
+  width: 60%;
+  margin: auto;
+}
+
+.card-button-group {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 10px; /* Space between buttons */
+  margin-top: 10px; /* Optional: Add space above the button group */
+}

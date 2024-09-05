@@ -1,0 +1,20 @@
+.StudentChapters {
+  text-align: center;
+  min-height: 100vh; /* Ensures full height for vertical centering */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligns items to the top */
+  padding: 20px; /* Adds padding around the container */
+    font-family: var(--font-primary);
+
+}
+
+.StudentChapters h1 {
+  margin-bottom: 1rem; /* Adjust margin as needed */
+}
+
+.StudentChapters .card-container {
+  display: flex;
+  flex-direction: column; /* Arrange cards in a single column */
+  align-items: center; /* Center the cards horizontally */
+}

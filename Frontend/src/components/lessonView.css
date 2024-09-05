@@ -1,0 +1,3 @@
+.react-player video::-webkit-media-controls-fullscreen-button {
+    display: none !important; /* Hide fullscreen button in WebKit browsers */
+  }

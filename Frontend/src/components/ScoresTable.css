@@ -1,0 +1,22 @@
+.scores-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scores-table th,
+.scores-table td {
+  border: 1px solid var(--secondary-color);
+  padding: var(--spacing-sm);
+}
+
+.scores-table th {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  text-align: left;
+}
+
+.scores-table td {
+  text-align: left;
+  color: var(--text-color);
+  background-color: var(--input-background);
+}

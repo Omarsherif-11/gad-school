@@ -1,0 +1,182 @@
+.quiz-container {
+  padding: var(--spacing-lg);
+  max-width: 600px;
+  margin: auto;
+  background-color: var(--background-color);
+  border-radius: var(--button-border-radius);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-title,.questions-title,.choices-title {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.correct-span{
+ margin-right: var( --spacing-sm)
+}
+.form-group {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-input,
+.form-textarea,
+.question-textarea,
+.choice-input {
+  width: 100%;
+  padding: var(--input-padding);
+  margin-top: var(--spacing-xs);
+  background-color: var(--input-background);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  color: var(--text-color);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.question-textarea:focus,
+.choice-input:focus {
+  border: var(--input-focus-border);
+  background-color: var(--input-focus-background);
+  outline: none;
+}
+
+.form-textarea,
+.question-textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+.question-container {
+  margin: var(--spacing-sm) 0;
+  background-color: var(--background-color);
+  border-radius: var(--button-border-radius);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+  cursor: pointer;
+  padding: var(--spacing-md);
+  background: var(--primary-color);
+  border-radius: var(--button-border-radius) var(--button-border-radius) 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.question-content {
+  padding: var(--spacing-md);
+  border: 1px solid var(--input-border);
+  border-radius: 0 0 var(--button-border-radius) var(--button-border-radius);
+  background-color: var(--background-color);
+}
+
+.question-file-input {
+  display: block;
+  margin-bottom: var(--spacing-md);
+}
+
+.choice-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.choice-container input[type="radio"] {
+  margin-right: var(--spacing-xs);
+  vertical-align: middle;
+}
+
+.choice-input {
+  flex: 1;
+  margin-right: var(--spacing-sm);
+  padding: var(--input-padding);
+}
+
+/* Base delete button and icon styles */
+.remove-icon {
+  color: var(--error-color);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.remove-question-div {
+  display: flex;
+  justify-content: center; 
+  margin-top: var(--spacing-lg);
+}
+
+.remove-question-btn {
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  padding: var(--button-padding);
+  display: flex;
+  align-items: center;
+}
+
+.remove-question-btn:hover {
+  background-color: darken(var(--error-color), 10%);
+}
+.add-choice-btn {
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  padding: var(--button-padding);
+  display: flex;
+  align-items: center;
+}
+
+.add-choice-btn:hover {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-color);
+}
+
+.add-question-btn {
+  margin-top: var(--spacing-xl);
+  padding: var(--button-padding);
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.submit-quiz-btn{
+    padding: var(--button-padding);
+    background-color: var(--button-background);
+    color: var(--button-color);
+    border: none;
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: auto;
+    margin-top:var(--spacing-xl)
+
+}
+
+.add-question-btn:hover {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-color);
+}
+
+/* Icon and button icon spacing */
+.add-choice-btn svg,
+.add-question-btn svg,
+.remove-question-btn svg {
+  margin-right: var(--spacing-xs);
+}
+
+
+

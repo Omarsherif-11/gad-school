@@ -1,0 +1,117 @@
+/* Existing styles */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-primary);
+}
+
+.form-container {
+  background-color: var(--primary-color);
+  padding: var(--spacing-lg);
+  border-radius: var(--button-border-radius);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: var(--form-width);
+  width: 100%;
+  font-family: var(--font-primary);
+}
+
+.title {
+  font-size: calc(var(--font-size-base) + 4px);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  color: var(--text-color);
+  font-family: var(--font-primary);
+}
+
+.input {
+  width: 100%;
+  padding: var(--input-padding);
+  margin-bottom: var(--form-gap);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  background-color: var(--input-background);
+  color: var(--text-color);
+  transition: border 0.2s, background-color 0.2s;
+  font-family: var(--font-primary);
+}
+
+.input:focus {
+  border: var(--input-focus-border);
+  background-color: var(--input-focus-background);
+  outline: none;
+}
+
+.button {
+  width: 100%;
+  padding: var(--button-padding);
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  position: relative; /* For spinner positioning */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: var(--button-hover-background);
+  color: var(--button-hover-color);
+}
+
+/* New styles for spinner */
+.spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1); /* Light gray border */
+  border-top: 3px solid var(--button-color); /* Spinner color */
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+}
+
+/* Keyframes for spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-message {
+  color: var(--error-color);
+  background-color: var(--error-background);
+  border-radius: var(--error-border-radius);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  text-align: center;
+}
+
+.resend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.resend p {
+  margin: 0;
+}
+
+.resend:hover {
+  color: var(--button-hover-background);
+  background-color: var(--input-focus-background);
+}

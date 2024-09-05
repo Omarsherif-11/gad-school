@@ -1,0 +1,89 @@
+.footer-container {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-family: var(--font-primary);
+  margin-top:100px;
+}
+
+.mission-statement {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.social-icons {
+  margin-bottom: 20px;
+}
+
+.social-icon {
+  color: #fff;
+  margin: 0 15px;
+  font-size: 1.8rem;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #007bff;
+}
+
+.website-icon {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  width: 100px;
+  height: auto;
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.website-icon:hover {
+  transform: translateY(-10px);
+}
+
+.footer-divider {
+  width: 80%;
+  border-top: 1px solid #555;
+  margin: 20px 0;
+}
+
+.contact-us {
+  margin: 20px 0;
+}
+
+.contact-link {
+  color: #fff;
+  font-size: 1.2rem;
+  text-decoration: underline;
+}
+
+.contact-link:hover {
+  color: #007bff;
+}
+
+.developer-credits {
+  margin-top: 20px;
+}
+
+.developer-link {
+  margin: 5px 10px;
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.developer-link:hover {
+  color: #007bff;
+}
+
+.love-statement {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #f8f9fa;
+}
+
+.all-rights-reserved {
+  margin-top: 20px;
+  font-size: 0.9rem;
+}

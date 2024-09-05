@@ -1,0 +1,137 @@
+/* PaymentPopup.css */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+
+}
+
+.popup-content {
+  background: #121212; /* Ensure this is linked to the theme variable */
+  padding: var(--spacing-md);
+  border-radius: var(--button-border-radius);
+  position: relative;
+  width: 300px;
+  max-width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-primary);
+
+}
+
+.close-btn {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-color);
+  z-index: 10; /* Ensures the close button is above other content */
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  padding-top: var(--spacing-lg); 
+  font-family: var(--font-primary);
+
+}
+
+.option-card {
+  background: var(--primary-color); /* Ensure this is linked to the theme variable */
+  padding: var(--spacing-sm);
+  border: 1px solid var(--secondary-color); /* Ensure this is linked to the theme variable */
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+  margin: 0 var(--spacing-xs);
+  transition: background 0.3s, border-color 0.3s;
+  font-family: var(--font-primary);
+
+}
+
+.option-card.selected {
+  border-color: var(--accent-color); /* Ensure this is linked to the theme variable */
+  background: var(--accent-color); /* Ensure this is linked to the theme variable */
+  color: var(--button-color); /* Ensure this is linked to the theme variable */
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: var(--input-padding);
+  border: var(--input-border); /* Ensure this is linked to the theme variable */
+  border-radius: var(--input-border-radius);
+  background: var(--input-background); /* Ensure this is linked to the theme variable */
+  color: var(--text-color); /* Ensure this is linked to the theme variable */
+  margin-bottom: var(--spacing-md);
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: var(--button-padding);
+  background: var(--button-background); /* Ensure this is linked to the theme variable */
+  color: var(--button-color); /* Ensure this is linked to the theme variable */
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: darken(var(--button-background), 10%);
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: var(--button-padding);
+  background: var(--button-background);
+  color: var(--button-color);
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background 0.3s;
+  position: relative; /* To position the spinner */
+}
+
+.submit-btn:disabled {
+  background: #6c757d; /* Grey out the button */
+  cursor: not-allowed; /* Change cursor */
+}
+
+.submit-btn.loading {
+  color: transparent; /* Hide the button text when loading */
+}
+
+.submit-btn.loading::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3; /* Light grey */
+  border-top: 2px solid var(--button-color); /* Button color */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
