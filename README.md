@@ -1,2 +1,1 @@
-# gad-school
-An educational website for teachers to add lessons with videos explaining the material and demonstrative images as well as quizzes on every lesson to measure the level of understanding of the lesson. The teacher has the ability to control all the material and put a price on it while the students are able to purchase the material and keep it to watch later or rewatch and take the quizzes as many times as they need. Each quiz cosists of questions that have images optionally and choice along with the question. A login and signup pages are provided with a registration system in place as well as email confirmation service.
+# planck
