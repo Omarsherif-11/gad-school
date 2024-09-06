@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(Cookies.get("mode") || "dark");
+  const [theme, setTheme] = useState(Cookies.get("mode") || "light");
   const [username, setUsername] = useState(Cookies.get("username") || null);
 
   const toggleTheme = () => {
