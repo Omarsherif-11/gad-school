@@ -4,6 +4,7 @@ import ChapterCard from "../components/ChapterCard";
 import Container from "react-bootstrap/Container";
 import "./StudentChapters.css";
 import { axiosInstance } from "../api/auth";
+import Col from 'react-bootstrap/Col'
 function StudentChapters() {
   const { yearId } = useParams();
   const [chapters, setChapters] = useState([]);
