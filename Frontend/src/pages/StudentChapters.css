@@ -1,24 +1,27 @@
+
 .StudentChapters {
   text-align: center;
   min-height: 100vh; /* Ensures full height for vertical centering */
   display: flex;
   flex-direction: column;
+  align-items: center; /* Centers items horizontally */
   justify-content: flex-start; /* Aligns items to the top */
-  padding: var(-spacing-md); /* Adds padding around the container */
-    font-family: var(--font-primary);
-
+  padding: var(--spacing-md); /* Adds padding around the container */
+  font-family: var(--font-primary);
 }
 
 .StudentChapters h1 {
-    margin-bottom: var(--spacing-lg); 
+  margin-bottom: var(--spacing-lg);
   font-size: 2rem;
 }
 
 .StudentChapters .card-container {
+  width: 100%; /* Takes full width to align with the title */
   display: flex;
   flex-wrap: wrap;
   justify-content: center; 
   gap: var(--spacing-lg); 
+  margin-top: var(--spacing-lg); /* Adds margin to separate from the title */
 }
 
 .text-danger {
