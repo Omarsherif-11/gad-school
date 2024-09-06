@@ -56,9 +56,10 @@ function generateRandomSixDigit() {
 // MAIL SERVICE
 async function sendVerificationEmail(email, code) {
   let transporter = nodemailer.createTransport({
-    service: "smtp.hostinger.com",
+    host: "smtp.hostinger.com", // Correct SMTP server
+    port: 587, // Use 587 for TLS/STARTTLS or 465 for SSL/TLS
+    secure: false,
 
-    //MAYBE GONNA CHANGE LATTER
     auth: {
       user: config.WEBSITE_EMAIL,
       pass: config.WEBSITE_EMAIL_PASSWORD,
