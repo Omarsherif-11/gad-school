@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./PaymentPopup.css";
 
 const PaymentPopup = ({ isOpen, onClose, handleBuy }) => {
-  const [selectedOption, setSelectedOption] = useState("card");
+  const [selectedOption, setSelectedOption] = useState("wallet");
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Add loading state
 
@@ -38,14 +38,14 @@ const PaymentPopup = ({ isOpen, onClose, handleBuy }) => {
           &times;
         </span>
         <div className="options">
-          <div
+          {/* <div
             className={`option-card ${
               selectedOption === "card" ? "selected" : ""
             }`}
             onClick={() => handleOptionClick("card")}
           >
             الدفع ببطاقة
-          </div>
+          </div> */}
           <div
             className={`option-card ${
               selectedOption === "wallet" ? "selected" : ""
