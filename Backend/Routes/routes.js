@@ -60,13 +60,13 @@ async function sendVerificationEmail(email, code) {
 
     //MAYBE GONNA CHANGE LATTER
     auth: {
-      user: process.env.WEBSITE_EMAIL,
-      pass: process.env.WEBSITE_EMAIL_PASSWORD,
+      user: config.WEBSITE_EMAIL,
+      pass: config.WEBSITE_EMAIL_PASSWORD,
     },
   });
 
   let mailOptions = {
-    from: process.env.WEBSITE_EMAIL,
+    from: config.WEBSITE_EMAIL,
     to: email,
     subject: "Verify Your Email",
     text: `Your verification code is: ${code}`,
@@ -172,28 +172,28 @@ async function verify(req, res) {
     console.log("here token:", token);
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: process.env.MODE_ENV === "production",
+      secure: config.MODE_ENV === "production",
       sameSite: "strict",
       expires: new Date(Date.now() + 3600000 * 72),
     });
     res.cookie("username", student.first_name + " " + student.last_name, {
-      secure: process.env.MODE_ENV === "production",
+      secure: config.MODE_ENV === "production",
       sameSite: "strict",
       expires: new Date(Date.now() + 3600000 * 72),
     });
     res.cookie("email", student.email, {
-      secure: process.env.MODE_ENV === "production",
+      secure: config.MODE_ENV === "production",
       sameSite: "strict",
       expires: new Date(Date.now() + 3600000 * 72),
     });
 
     res.cookie("role", "student", {
-      secure: process.env.MODE_ENV === "production",
+      secure: config.MODE_ENV === "production",
       sameSite: "strict",
       expires: new Date(Date.now() + 3600000 * 72),
     });
     res.cookie("mode", "dark", {
-      secure: process.env.MODE_ENV === "production",
+      secure: config.MODE_ENV === "production",
       sameSite: "strict",
     });
     console.log("here token:2");
@@ -282,7 +282,7 @@ async function loginPost(req, res) {
   try {
     console.log("i am loginen in");
 
-    console.log(process.env);
+    console.log(config);
     let user = await Abdo.findOne({
       where: {
         email: req.body.email,
@@ -323,27 +323,27 @@ async function loginPost(req, res) {
       );
       res.cookie("jwt", token, {
         httpOnly: true,
-        secure: process.env.MODE_ENV === "production",
+        secure: config.MODE_ENV === "production",
         sameSite: "strict",
         expires: new Date(Date.now() + 3600000 * 72),
       });
       res.cookie("username", user.first_name + " " + user.last_name, {
-        secure: process.env.MODE_ENV === "production",
+        secure: config.MODE_ENV === "production",
         sameSite: "strict",
         expires: new Date(Date.now() + 3600000 * 72),
       });
       res.cookie("email", user.email, {
-        secure: process.env.MODE_ENV === "production",
+        secure: config.MODE_ENV === "production",
         sameSite: "strict",
         expires: new Date(Date.now() + 3600000 * 72),
       });
       res.cookie("role", role, {
-        secure: process.env.MODE_ENV === "production",
+        secure: config.MODE_ENV === "production",
         sameSite: "strict",
         expires: new Date(Date.now() + 3600000 * 72),
       });
       res.cookie("mode", "dark", {
-        secure: process.env.MODE_ENV === "production",
+        secure: config.MODE_ENV === "production",
         sameSite: "strict",
       });
       res.status(201).json({
@@ -365,24 +365,24 @@ async function loginPost(req, res) {
 async function logoutPost(req, res) {
   res.clearCookie("jwt", {
     httpOnly: true,
-    secure: process.env.MODE_ENV === "production",
+    secure: config.MODE_ENV === "production",
     sameSite: "strict",
   });
   res.clearCookie("username", {
-    secure: process.env.MODE_ENV === "production",
+    secure: config.MODE_ENV === "production",
     sameSite: "strict",
   });
   res.clearCookie("email", {
     httpOnly: true,
-    secure: process.env.MODE_ENV === "production",
+    secure: config.MODE_ENV === "production",
     sameSite: "strict",
   });
   res.clearCookie("role", {
-    secure: process.env.MODE_ENV === "production",
+    secure: config.MODE_ENV === "production",
     sameSite: "strict",
   });
   res.clearCookie("mode", {
-    secure: process.env.MODE_ENV === "production",
+    secure: config.MODE_ENV === "production",
     sameSite: "strict",
   });
   res.status(200).json({ message: "Logout successful" });
@@ -941,10 +941,10 @@ async function uploadLessonPost(req, res) {
   }
 }
 
-const api_key = process.env.PAYMENT_API_KEY;
-const integration_id_card = process.env.INTEGRATION_ID_CARD;
-const integration_id_wallet = process.env.INTEGRATION_ID_WALLET;
-const my_hmac = process.env.MY_HMAC;
+const api_key = config.PAYMENT_API_KEY;
+const integration_id_card = config.INTEGRATION_ID_CARD;
+const integration_id_wallet = config.INTEGRATION_ID_WALLET;
+const my_hmac = config.MY_HMAC;
 
 async function createPaymentPost(req, res) {
   const { lessons, paymentMethod, phoneNumber, yearId, chapterId } = req.body;
@@ -1546,7 +1546,7 @@ async function updateConfig(req, res) {
       return res.status(400).send({ message: "Key and value are required." });
     }
 
-    process.env[key] = value;
+    config[key] = value;
 
     const envFilePath = ".env";
     let envFileContent = await fs.readFile(envFilePath, "utf-8");
