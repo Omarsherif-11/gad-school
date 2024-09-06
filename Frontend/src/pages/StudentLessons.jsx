@@ -131,6 +131,15 @@ function StudentLessons() {
   };
 
   return (
+    <div
+      className="container-fluid"
+      style={{
+        marginBottom: "15px",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
     <div className="lessons-container">
       <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
         {error && (
@@ -219,6 +228,7 @@ function StudentLessons() {
           onClose={closePopup}
           handleBuy={handleBuy}
         />
+      </div>
       </div>
     </div>
   );

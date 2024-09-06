@@ -32,6 +32,15 @@ function StudentChapters() {
   console.log("chapters", chapters);
 
   return (
+    <div
+      className="container-fluid"
+      style={{
+        marginBottom: "15px",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
     <div className="StudentChapters">
       <h1 className="text-center mt-4"> الفصول فى الصف الثانوى {yearId}</h1>
 
@@ -50,6 +59,7 @@ function StudentChapters() {
           <p className="text-center mt-4">لا توجد فصول الأن</p>
         )}
       </Container>
+    </div>
     </div>
   );
 }
