@@ -44,7 +44,7 @@ function StudentChapters() {
     <div className="StudentChapters">
       <h1 className="text-center mt-4"> الفصول فى الصف الثانوى {yearId}</h1>
 
-      <Container>
+      <Col>
         {error ? (
           <p className="text-center text-danger mt-4">
             Failed to load chapters: {error}
@@ -58,7 +58,7 @@ function StudentChapters() {
         ) : (
           <p className="text-center mt-4">لا توجد فصول الأن</p>
         )}
-      </Container>
+      </Col>
     </div>
     </div>
   );
