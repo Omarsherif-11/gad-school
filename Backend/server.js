@@ -56,20 +56,20 @@ initializeAbdo();
 async function initializeAbdo() {
   try {
     const adminExists = await Abdo.findOne({
-      where: { email: process.env.ADMIN_EMAIL },
+      where: { email: config.ADMIN_EMAIL },
     });
     if (!adminExists) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(
-        process.env.ADMIN_PASSWORD,
+        config.ADMIN_PASSWORD,
         salt
       );
 
       await Abdo.create({
-        email: process.env.ADMIN_EMAIL,
+        email: config.ADMIN_EMAIL,
         password: hashedPassword,
-        first_name: "abdo",
-        last_name: "gad",
+        first_name: "Abdo",
+        last_name: "Gad",
         mobile_num: "01234567890",
       });
       console.log("Admin user created successfully.");
