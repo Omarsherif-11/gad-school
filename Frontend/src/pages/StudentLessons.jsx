@@ -159,7 +159,13 @@ function StudentLessons() {
         {lessons.length === 0 && !error ? (
           <p className="text-center">لم يتم العثور على دروس.</p>
         ) : (
-          <Col className="g-4">
+          <Col
+          style={{
+            justifyContent: "center",
+            textAlign: "center",
+            marginTop: "20px",
+          }}
+        >
             {lessons.map((lesson, index) => (
               <Col key={lesson.id} xs={12} className="lessons-col">
                 <Card className="lesson-card" key={index}>

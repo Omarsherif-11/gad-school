@@ -45,7 +45,12 @@ function StudentChapters() {
     <div className="StudentChapters">
       <h1 className="text-center mt-4"> الفصول فى الصف الثانوى {yearId}</h1>
 
-      <Col>
+      <Col 
+      style={{
+          justifyContent: "center",
+          textAlign: "center",
+          marginTop: "20px",
+        }}>
         {error ? (
           <p className="text-center text-danger mt-4">
             Failed to load chapters: {error}
