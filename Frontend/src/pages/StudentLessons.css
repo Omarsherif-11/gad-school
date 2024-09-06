@@ -23,6 +23,16 @@
   margin: auto;
 }
 
+.lesson-card .status-badge {
+  position: absolute;
+  top: var(--spacing-xs);
+  left: var(--spacing-xs);
+  z-index: 10;
+  padding: var(--spacing-xs);
+  border-radius: 50%;
+  /* color: var(--button-color); */
+}
+
 .card-button-group {
   display: flex;
   justify-content: center; /* Center the buttons horizontally */

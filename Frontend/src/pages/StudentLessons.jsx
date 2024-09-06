@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Badge from "react-bootstrap/Badge";
+
 import Button from "react-bootstrap/Button";
 import "./StudentLessons.css";
 import PaymentPopup from "../components/PaymentPopup";
@@ -172,6 +174,14 @@ function StudentLessons() {
                   <Card.Body>
                     <Card.Title>{lesson.name}</Card.Title>
                     <Card.Text>{lesson.brief}</Card.Text>
+                    <div className="status-badge">
+                      {lesson.isBought && (
+                        <Badge bg="warning">
+                          <h5>{lesson.price} جنيه مصري</h5>
+                          <p>درس + اختبار</p>
+                        </Badge>
+                      )}
+                    </div>
                     <div className="card-button-group">
                       {lesson.isBought ? (
                         <>

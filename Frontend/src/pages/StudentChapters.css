@@ -4,17 +4,24 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Aligns items to the top */
-  padding: 20px; /* Adds padding around the container */
+  padding: var(-spacing-md); /* Adds padding around the container */
     font-family: var(--font-primary);
 
 }
 
 .StudentChapters h1 {
-  margin-bottom: 1rem; /* Adjust margin as needed */
+    margin-bottom: var(--spacing-lg); 
+  font-size: 2rem;
 }
 
 .StudentChapters .card-container {
   display: flex;
-  flex-direction: column; /* Arrange cards in a single column */
-  align-items: center; /* Center the cards horizontally */
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: var(--spacing-lg); 
 }
+
+.text-danger {
+  color: var(--error-color); 
+}
+
