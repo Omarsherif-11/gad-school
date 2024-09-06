@@ -41,6 +41,11 @@ const Signup = () => {
       navigate("/verify");
     } catch (error) {
       setError(error.message || "An error occurred");
+      if (error.includes("verify")) {
+        localStorage.setItem("verificationEmail", formData.email);
+        setTimeout(() => navigate("/verify"), 1000);
+      }
+
     } finally {
       setIsLoading(false);
     }

@@ -23,6 +23,10 @@ const Login = () => {
       setTimeout(() => navigate("/"), 500);
     } catch (error) {
       setError(error || "Invalid Credentials");
+      if (error.includes("verify")) {
+        localStorage.setItem("verificationEmail", email);
+        setTimeout(() => navigate("/verify"), 1000);
+      }
     } finally {
       setIsLoading(false);
     }

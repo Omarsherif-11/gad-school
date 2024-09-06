@@ -253,14 +253,16 @@ async function signUpPost(req, res) {
       last_name: req.body.lastName,
       mobile_num: req.body.phone,
     };
-
-    if (
-      await Student.findOne({
-        where: {
-          email: student.email,
-        },
-      })
-    ) {
+    const registeredStudent = await Student.findOne({
+      where: {
+        email: student.email,
+      },
+    });
+    if (registeredStudent) {
+      if (!registeredStudent.is_verified)
+        throw new Error(
+          "The email is registered but not verified, please verify your email first"
+        );
       throw new Error("There is another account with this email");
     }
 
