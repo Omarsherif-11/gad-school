@@ -18,7 +18,6 @@
 .StudentChapters .card-container {
   width: 100%; /* Takes full width to align with the title */
   display: flex;
-  flex-wrap: wrap;
   justify-content: center; 
   gap: var(--spacing-lg); 
   margin-top: var(--spacing-lg); /* Adds margin to separate from the title */
