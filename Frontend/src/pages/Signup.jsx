@@ -42,7 +42,7 @@ const Signup = () => {
     } catch (err) {
       console.log(err);
       setError(err || "An error occurred");
-      if (error.includes("verify")) {
+      if (err.includes("verify")) {
         localStorage.setItem("verificationEmail", formData.email);
         setTimeout(() => navigate("/verify"), 1000);
       }
