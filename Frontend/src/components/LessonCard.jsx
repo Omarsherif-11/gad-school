@@ -16,6 +16,10 @@ function LessonCard(props) {
   }
 
   async function handleDeletion() {
+
+    if(!window.confirm("Are you sure you want to delete ?"))
+      return;
+    
     try {
       setLoading(true);
       await deleteLesson(props.id);
