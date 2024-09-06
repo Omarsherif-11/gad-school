@@ -15,6 +15,9 @@ function ChapterCard({ chapterTitle, chapterId, image }) {
 
   const handleDeletion = async () => {
     setLoading(true);
+
+    if(!window.confirm("Are you sure you want to delete ?"))
+      return;
     try {
       await deleteChapter(chapterId);
       window.location.reload();

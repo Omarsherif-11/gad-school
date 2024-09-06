@@ -83,6 +83,10 @@ function QuestionCard(props) {
   }
 
   async function handleDelete() {
+
+    if(!window.confirm("Are you sure you want to delete ?"))
+      return;
+
     try {
       const response = await axiosInstance.delete("/deleteQuestion", {
         withCredentials: true,
@@ -96,6 +100,10 @@ function QuestionCard(props) {
   }
 
   async function deleteChoice(id) {
+
+    if(!window.confirm("Are you sure you want to delete ?"))
+      return;
+    
     try {
       const response = await axiosInstance.delete("/deleteChoice", {
         data: { id },
