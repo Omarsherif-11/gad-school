@@ -164,6 +164,7 @@ async function verify(req, res) {
         first_name: student.first_name,
         last_name: student.last_name,
         role: "student",
+        is_verified: student.is_verified,
       },
       secretKey,
       { expiresIn: "3d" }
@@ -315,6 +316,7 @@ async function loginPost(req, res) {
           first_name: user.first_name,
           last_name: user.last_name,
           role: role,
+          is_verified: user.is_verified,
         },
         secretKey,
         { expiresIn: "3d" }
@@ -465,7 +467,7 @@ async function getLesson(req, res) {
         },
       });
 
-      if (hasPurchased) {
+      if (hasPurchased || lesson.price === 0) {
         // increamenting view count
         await Lesson.update(
           { view_count: lesson.view_count + 1 },
@@ -510,7 +512,7 @@ async function getLessonsOfChapter(req, res) {
 
         return {
           ...lesson.toJSON(),
-          isBought: !!isBought, // Convert to boolean
+          isBought: lesson.price === 0 || !!isBought, // Convert to boolean
         };
       })
     );
