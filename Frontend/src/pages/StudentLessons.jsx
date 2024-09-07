@@ -189,16 +189,16 @@ function StudentLessons() {
                     <Card.Body>
                       <Card.Title>{lesson.name}</Card.Title>
                       <Card.Text>{lesson.brief}</Card.Text>
-                      <div className="status-badge">
-                        {lesson.isBought && (
+                      {!lesson.isBought && (
+                        <div className="status-badge">
                           <Badge bg="warning">
                             <div>
                               <h5>{lesson.price} جنيه مصري</h5>
                               <p>درس + اختبار</p>
                             </div>
                           </Badge>
-                        )}
-                      </div>
+                        </div>
+                      )}
                       <div className="card-button-group">
                         {lesson.isBought ? (
                           <>
