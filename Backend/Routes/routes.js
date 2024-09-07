@@ -1206,7 +1206,7 @@ async function deleteLessonDELETE(req, res) {
 
     deletePromises.push(fs.unlink(`${config.VIDEO_PATH}/${video}`).catch());
 
-    deletePromises.push(fs.unlink(`${config.PDF_PATH}/${lesson.description}`)).catch();
+    deletePromises.push(fs.unlink(`${config.PDF_PATH}/${lesson.description}`).catch());
 
 
     await Promise.allSettled(deletePromises);
