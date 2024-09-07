@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { pdfjs } from "react-pdf";
+import { pdfjs } from "pdfjs-dist";
 import "pdfjs-dist/webpack";
 import "./PdfView2.css";
 const PdfView2 = ({ url }) => {
@@ -7,6 +8,9 @@ const PdfView2 = ({ url }) => {
 
   useEffect(() => {
     const loadPdf = async () => {
+      pdfjs.GlobalWorkerOptions.workerSrc =
+        "../../../node_modules/pdfjs-dist/build/pdf.worker.min.js";
+
       const loadingTask = pdfjs.getDocument(url);
       const pdf = await loadingTask.promise;
 
