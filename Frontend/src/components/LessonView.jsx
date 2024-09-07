@@ -175,8 +175,8 @@ function LessonView() {
                   marginBottom: "15px",
                 }}
               >
-                {/* <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} /> */}
-                <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} />
+                <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} />
+                {/* <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} /> */}
               </div>
             )}
 
