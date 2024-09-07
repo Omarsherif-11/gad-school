@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getLesson, API_URL } from "../api/auth";
 import React from "react";
 import ReactPlayer from "react-player";
-import "./LessonView.css";
+import "./lessonView.css";
 import Cookies from "js-cookie";
 import PdfView from "./PdfView";
 import PdfView2 from "./PdfView2";
