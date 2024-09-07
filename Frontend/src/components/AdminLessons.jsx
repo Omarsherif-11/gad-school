@@ -208,7 +208,7 @@ function AdminLessons(props) {
                     />
                   </div>
                   <div className="col-auto">
-                    <label style={{ marginBottom: "15px" }}>وصف الدرس</label>
+                    <label style={{ marginBottom: "15px" }}>شرح الدرس</label>
                     <textarea
                       type="text"
                       id="zaName"
