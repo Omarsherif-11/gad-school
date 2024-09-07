@@ -1186,7 +1186,6 @@ async function transactionProcessedCallbackPost(req, res) {
 async function deleteLessonDELETE(req, res) {
   const lesson_id = parseInt(req.body.lesson);
 
-  console.log(lesson_id);
 
   try {
     const lesson = await Lesson.findByPk(lesson_id);
@@ -1206,6 +1205,9 @@ async function deleteLessonDELETE(req, res) {
     deletePromises.push(fs.unlink(`${config.IMAGE_PATH}/${image}`).catch());
 
     deletePromises.push(fs.unlink(`${config.VIDEO_PATH}/${video}`).catch());
+
+    deletePromises.push(fs.unlink(`${config.PDF_PATH}/${lesson.description}`)).catch();
+
 
     await Promise.allSettled(deletePromises);
 
