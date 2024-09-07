@@ -156,10 +156,11 @@ function LessonView() {
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
+                marginBottom: "16px",
               }}
             >
-              <h3 style={{ margin: "0" }}>Lesson PDF</h3>
-              <span style={{ marginLeft: "10px" }}>
+              <h3 style={{ margin: "0" }}>الشرح </h3>
+              <span style={{ marginLeft: "10px", marginRight: "10px" }}>
                 {activePdf ? <FaChevronUp /> : <FaChevronDown />}
               </span>
             </div>
