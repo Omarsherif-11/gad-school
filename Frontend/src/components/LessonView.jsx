@@ -6,7 +6,9 @@ import ReactPlayer from "react-player";
 import "./lessonView.css";
 import Cookies from "js-cookie";
 import PdfViewer from "./PdfView";
+import PdfView2 from "./PdfView2";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
+import PdfView2 from "./PdfView2";
 
 function LessonView() {
   const { id } = useParams();
@@ -174,7 +176,8 @@ function LessonView() {
                   marginBottom: "15px",
                 }}
               >
-                <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} />
+                {/* <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} /> */}
+                <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} />
               </div>
             )}
 
