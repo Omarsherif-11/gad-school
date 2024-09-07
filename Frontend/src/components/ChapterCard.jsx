@@ -18,7 +18,7 @@ function ChapterCard({ chapter }) {
   };
 
   return (
-    <Card className="chapter-card">
+    <Card className="chapter-card" style={{ margin: "20px", maxWidth: "600px", padding: "10px" }}>
       {chapter.image && (
         <Card.Img variant="top" src={`${API_URL}/images/${chapter.image}`} />
       )}

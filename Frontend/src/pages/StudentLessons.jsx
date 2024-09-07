@@ -131,6 +131,15 @@ function StudentLessons() {
   };
 
   return (
+    <div
+      className="container-fluid"
+      style={{
+        marginBottom: "15px",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
     <div className="lessons-container">
       <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
         {error && (
@@ -150,7 +159,13 @@ function StudentLessons() {
         {lessons.length === 0 && !error ? (
           <p className="text-center">لم يتم العثور على دروس.</p>
         ) : (
-          <Row className="g-4">
+          <Col
+          style={{
+            justifyContent: "center",
+            textAlign: "center",
+            marginTop: "20px",
+          }}
+        >
             {lessons.map((lesson, index) => (
               <Col key={lesson.id} xs={12} className="lessons-col">
                 <Card className="lesson-card" key={index}>
@@ -211,7 +226,7 @@ function StudentLessons() {
                 </Card>
               </Col>
             ))}
-          </Row>
+          </Col>
         )}
 
         <PaymentPopup
@@ -219,6 +234,7 @@ function StudentLessons() {
           onClose={closePopup}
           handleBuy={handleBuy}
         />
+      </div>
       </div>
     </div>
   );
