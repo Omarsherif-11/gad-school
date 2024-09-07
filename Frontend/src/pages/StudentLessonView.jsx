@@ -5,8 +5,7 @@ import React from "react";
 import ReactPlayer from "react-player";
 import "./StudentLessonView.css";
 import Cookies from "js-cookie";
-import PdfView from "./PdfView";
-import PdfView2 from "./PdfView2";
+import PdfView from "../components/PdfView";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
 
 function StudentLessonView() {
