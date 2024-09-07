@@ -1,3 +1,8 @@
 .react-player video::-webkit-media-controls-fullscreen-button {
     display: none !important; /* Hide fullscreen button in WebKit browsers */
   }
+
+  .container-fluid{
+      font-family: var(--font-primary);
+
+  }
