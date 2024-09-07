@@ -9,11 +9,21 @@ import React from "react";
 import ReactPlayer from "react-player";
 import { useRef } from "react";
 import { API_URL } from "../api/auth";
+import PdfView from "../components/PdfView";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
 
 function StudentLessonView() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
   const [lesson, setLesson] = useState(null);
+
+  const [isPdfVisible, setIsPdfVisible] = useState(true);
+  const [activePdf, setActivePdf] = useState(true); // Active state for dropdown
+
+  const togglePdfVisibility = () => {
+    setActivePdf(!activePdf);
+    setIsPdfVisible(!isPdfVisible);
+  };
 
   useEffect(() => {
     const getTheLesson = async () => {
@@ -128,6 +138,35 @@ function StudentLessonView() {
             <h1 className="lesson-title">{lesson.name}</h1>
             <p className="lesson-description">{lesson.description}</p>
             <div className="video-container" onContextMenu={handleContextMenu}>
+              <div
+                className="pdf-header"
+                onClick={togglePdfVisibility}
+                style={{
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "16px",
+                }}
+              >
+                <h3 style={{ margin: "0" }}>الشرح </h3>
+                <span style={{ marginLeft: "10px", marginRight: "10px" }}>
+                  {activePdf ? <FaChevronUp /> : <FaChevronDown />}
+                </span>
+              </div>
+
+              {/* Conditionally render PdfViewer based on isPdfVisible state */}
+              {isPdfVisible && (
+                <div
+                  className="pdf-viewer-container"
+                  style={{
+                    width: "75%",
+                    marginBottom: "15px",
+                  }}
+                >
+                  <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} />
+                  {/* <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} /> */}
+                </div>
+              )}
               <style>{keyFrames}</style>
               <div
                 className="container-fluid"
