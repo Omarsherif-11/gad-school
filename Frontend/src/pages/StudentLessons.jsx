@@ -140,101 +140,103 @@ function StudentLessons() {
         justifyContent: "center",
       }}
     >
-    <div className="lessons-container">
-      <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
-        {error && (
-          <div className="text-center mb-4 text-danger">
-            <p>{error}</p>
-          </div>
-        )}
+      <div className="lessons-container">
+        <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
+          {error && (
+            <div className="text-center mb-4 text-danger">
+              <p>{error}</p>
+            </div>
+          )}
 
-        {selectedLessons.length > 0 && (
-          <div className="text-center mb-4">
-            <Button className="btn btn-success" onClick={handleBuyAll}>
-              شراء الدروس المحددة مقابل {totalPrice.toFixed(2)} جنيه مصري
-            </Button>
-          </div>
-        )}
+          {selectedLessons.length > 0 && (
+            <div className="text-center mb-4">
+              <Button className="btn btn-success" onClick={handleBuyAll}>
+                شراء الدروس المحددة مقابل {totalPrice.toFixed(2)} جنيه مصري
+              </Button>
+            </div>
+          )}
 
-        {lessons.length === 0 && !error ? (
-          <p className="text-center">لم يتم العثور على دروس.</p>
-        ) : (
-          <Col
-          style={{
-            justifyContent: "center",
-            textAlign: "center",
-            marginTop: "20px",
-          }}
-        >
-            {lessons.map((lesson, index) => (
-              <Col key={lesson.id} xs={12} className="lessons-col">
-                <Card className="lesson-card" key={index}>
-                  {!lesson.isBought && (
-                    <input
-                      type="checkbox"
-                      checked={selectedLessons.some(
-                        (sl) => sl.id === lesson.id
-                      )}
-                      className="position-absolute top-0 end-0 m-2 custom-checkbox"
-                      onChange={() => handleCheckboxChange(lesson.id)}
+          {lessons.length === 0 && !error ? (
+            <p className="text-center">لم يتم العثور على دروس.</p>
+          ) : (
+            <Col
+              style={{
+                justifyContent: "center",
+                textAlign: "center",
+                marginTop: "20px",
+              }}
+            >
+              {lessons.map((lesson, index) => (
+                <Col key={lesson.id} xs={12} className="lessons-col">
+                  <Card className="lesson-card" key={index}>
+                    {!lesson.isBought && (
+                      <input
+                        type="checkbox"
+                        checked={selectedLessons.some(
+                          (sl) => sl.id === lesson.id
+                        )}
+                        className="position-absolute top-0 end-0 m-2 custom-checkbox"
+                        onChange={() => handleCheckboxChange(lesson.id)}
+                      />
+                    )}
+                    <Card.Img
+                      variant="top"
+                      src={
+                        `${API_URL}/images/${lesson.image}` ||
+                        "holder.js/100px160"
+                      }
                     />
-                  )}
-                  <Card.Img
-                    variant="top"
-                    src={
-                      `${API_URL}/images/${lesson.image}` ||
-                      "holder.js/100px160"
-                    }
-                  />
-                  <Card.Body>
-                    <Card.Title>{lesson.name}</Card.Title>
-                    <Card.Text>{lesson.brief}</Card.Text>
-                    <div className="status-badge">
-                      {lesson.isBought && (
-                        <Badge bg="warning">
-                          <h5>{lesson.price} جنيه مصري</h5>
-                          <p>درس + اختبار</p>
-                        </Badge>
-                      )}
-                    </div>
-                    <div className="card-button-group">
-                      {lesson.isBought ? (
-                        <>
+                    <Card.Body>
+                      <Card.Title>{lesson.name}</Card.Title>
+                      <Card.Text>{lesson.brief}</Card.Text>
+                      <div className="status-badge">
+                        {lesson.isBought && (
+                          <Badge bg="warning">
+                            <div>
+                              <h5>{lesson.price} جنيه مصري</h5>
+                              <p>درس + اختبار</p>
+                            </div>
+                          </Badge>
+                        )}
+                      </div>
+                      <div className="card-button-group">
+                        {lesson.isBought ? (
+                          <>
+                            <Button
+                              variant="primary"
+                              onClick={() => handleGoToLesson(lesson.id)}
+                            >
+                              الذهاب إلى الدرس
+                            </Button>
+                            <Button
+                              variant="secondary"
+                              onClick={() => handleTakeQuiz(lesson.id)}
+                            >
+                              الاختبار
+                            </Button>
+                          </>
+                        ) : (
                           <Button
-                            variant="primary"
-                            onClick={() => handleGoToLesson(lesson.id)}
+                            variant="success"
+                            onClick={() => handleBuySolo(lesson)}
                           >
-                            الذهاب إلى الدرس
+                            شراء الدرس مقابل {lesson.price} جنيه مصري
                           </Button>
-                          <Button
-                            variant="secondary"
-                            onClick={() => handleTakeQuiz(lesson.id)}
-                          >
-                            الاختبار
-                          </Button>
-                        </>
-                      ) : (
-                        <Button
-                          variant="success"
-                          onClick={() => handleBuySolo(lesson)}
-                        >
-                          شراء الدرس مقابل {lesson.price} جنيه مصري
-                        </Button>
-                      )}
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Col>
-        )}
+                        )}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
+            </Col>
+          )}
 
-        <PaymentPopup
-          isOpen={isPopupOpen}
-          onClose={closePopup}
-          handleBuy={handleBuy}
-        />
-      </div>
+          <PaymentPopup
+            isOpen={isPopupOpen}
+            onClose={closePopup}
+            handleBuy={handleBuy}
+          />
+        </div>
       </div>
     </div>
   );

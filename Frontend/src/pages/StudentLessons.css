@@ -28,7 +28,7 @@
   top: var(--spacing-xs);
   left: var(--spacing-xs);
   z-index: 10;
-  padding: var(--spacing-xs);
+  padding: var(--spacing-xl);
   border-radius: 50%;
   /* color: var(--button-color); */
 }
