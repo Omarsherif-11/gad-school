@@ -3,13 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getLesson, API_URL } from "../api/auth";
 import React from "react";
 import ReactPlayer from "react-player";
-import "./lessonView.css";
+import "./StudentLessonView.css";
 import Cookies from "js-cookie";
 import PdfView from "./PdfView";
 import PdfView2 from "./PdfView2";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
 
-function LessonView() {
+function StudentLessonView() {
   const { id } = useParams();
   const [lesson, setLesson] = useState(null);
   const [isPdfVisible, setIsPdfVisible] = useState(true); // State to manage PDF visibility
@@ -248,4 +248,4 @@ function LessonView() {
   );
 }
 
-export default LessonView;
+export default StudentLessonView;
