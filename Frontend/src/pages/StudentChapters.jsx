@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ChapterCard from "../components/ChapterCard";
 import Container from "react-bootstrap/Container";
-import "./StudentChapters.css";
 import { axiosInstance } from "../api/auth";
 function StudentChapters() {
   const { yearId } = useParams();
@@ -32,24 +31,53 @@ function StudentChapters() {
   console.log("chapters", chapters);
 
   return (
-    <div className="StudentChapters">
-      <h1 className="text-center mt-4"> الفصول فى الصف الثانوى {yearId}</h1>
-
-      <Container>
-        {error ? (
-          <p className="text-center text-danger mt-4">
-            Failed to load chapters: {error}
-          </p>
-        ) : chapters.length > 0 ? (
-          <div className="card-container">
-            {chapters.map((chapter, index) => (
-              <ChapterCard key={index} chapter={chapter} />
-            ))}
+    <div
+      className="container-fluid"
+      style={{
+        marginBottom: "15px",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Col
+        style={{
+          justifyContent: "center",
+          textAlign: "center",
+          marginTop: "20px",
+        }}
+      >
+        <div className="StudentChapters">
+          <div
+            className="container-fluid justify-content-center m-6"
+            style={{ padding: "10px" }}
+          >
+            {error ? (
+              <p className="text-center text-danger mt-4">
+                Failed to load chapters: {error}
+              </p>
+            ) : chapters.length > 0 ? (
+              <Row className="justify-content-center align-items-center text-align-center">
+                {chapters.map((chapter, index) => (
+                  <Col
+                    key={index}
+                    sm={12}
+                    md={6}
+                    lg={4}
+                    className="mb-4 d-flex justify-content-center"
+                  >
+                    <ChapterCard chapter={chapter} />
+                  </Col>
+                ))}
+              </Row>
+            ) : (
+              <div>
+                <p className="text-center mt-4">لا توجد فصول بعد</p>
+              </div>
+            )}
           </div>
-        ) : (
-          <p className="text-center mt-4">لا توجد فصول الأن</p>
-        )}
-      </Container>
+        </div>
+      </Col>
     </div>
   );
 }
