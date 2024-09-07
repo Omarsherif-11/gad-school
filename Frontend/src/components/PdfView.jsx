@@ -1,7 +1,7 @@
 import React from "react";
-import "./PDFView.css";
+import "./PdfView.css";
 
-const PDFView = ({ url }) => {
+const PdfView = ({ url }) => {
   return (
     <div className="pdf-viewer-container">
       <iframe src={url} className="pdf-viewer" title="PDF Viewer" />
@@ -9,4 +9,4 @@ const PDFView = ({ url }) => {
   );
 };
 
-export default PDFView;
+export default PdfView;
