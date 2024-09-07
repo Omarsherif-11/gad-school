@@ -15,7 +15,7 @@ function AdminLessons(props) {
 
   const [lessons, setLessons] = useState([]);
   const [showForm, setShowForm] = useState(false);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(null);
   const [video, setVideo] = useState(null);
   const [price, setPrice] = useState(0);
   const [name, setName] = useState("");
@@ -53,7 +53,6 @@ function AdminLessons(props) {
     const formData = new FormData();
 
     formData.append("name", name);
-    formData.append("description", description);
     formData.append("view_count", 0);
     formData.append("chapter", id);
     formData.append("price", price);
@@ -67,6 +66,7 @@ function AdminLessons(props) {
       image.name.split(".").pop().toLowerCase()
     );
     formData.append("brief", brief);
+    formData.append("description", description);
     formData.append("video", video);
     formData.append("image", image);
 
@@ -209,12 +209,12 @@ function AdminLessons(props) {
                   </div>
                   <div className="col-auto">
                     <label style={{ marginBottom: "15px" }}>شرح الدرس</label>
-                    <textarea
-                      type="text"
+                    <input
+                      type="file"
                       id="zaName"
                       className="form-control"
                       placeholder="Lesson Description"
-                      onChange={(e) => setDescription(e.target.value)}
+                      onChange={(e) => setDescription(e.target.files[0])}
                       style={{ marginBottom: "15px" }}
                     />
                   </div>

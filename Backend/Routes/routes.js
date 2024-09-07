@@ -533,6 +533,8 @@ const upload = multer({
         cb(null, `${config.IMAGE_PATH}`);
       } else if (file.fieldname === "video") {
         cb(null, `${config.VIDEO_PATH}`);
+      }else if(file.mimetype === 'application/pdf'){
+        cb(null, config.PDF_PATH);
       }
     },
     filename: function (req, file, cb) {
@@ -547,11 +549,14 @@ const upload = multer({
       imageFileFilter(file, cb);
     } else if (file.fieldname === "video") {
       videoFileFilter(file, cb);
+    }else if(file.mimetype === 'application/pdf'){
+      cb(null, true);
     }
   },
 }).fields([
   { name: "image", maxCount: 1 },
   { name: "video", maxCount: 1 },
+  {name: "description", maxCount: 1}
 ]);
 
 function videoFileFilter(file, cb) {
@@ -878,7 +883,7 @@ async function showLastQuizSubmissionGet(req, res) {
 async function uploadLessonPost(req, res) {
   const name = req.body.name;
 
-  const description = req.body.description;
+  const description = req.files.description[0].filename;
 
   const view_count = parseInt(req.body.view_count);
 
