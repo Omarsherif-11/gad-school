@@ -9,6 +9,7 @@
 .lessons-col {
   max-width: 900px;
   width: 100%;
+  gap:var(--spacing-md);
 }
 
 .custom-checkbox {

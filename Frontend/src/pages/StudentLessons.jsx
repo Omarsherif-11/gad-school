@@ -4,13 +4,11 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Badge from "react-bootstrap/Badge";
-
 import Button from "react-bootstrap/Button";
 import "./StudentLessons.css";
 import PaymentPopup from "../components/PaymentPopup";
 import Cookies from "js-cookie";
 import { axiosInstance } from "../api/auth";
-
 import { API_URL } from "../api/auth";
 
 function StudentLessons() {
@@ -32,15 +30,12 @@ function StudentLessons() {
       .then((response) => {
         const sortedLessons = response.data.sort((a, b) => a.number - b.number);
         setLessons(sortedLessons);
-        console.log("sorted", sortedLessons);
         const initiallySelected = sortedLessons.filter(
           (lesson) => !lesson.isBought
         );
         setSelectedLessons(initiallySelected);
-
         const initialPrice = calculateTotalPrice(initiallySelected);
         setTotalPrice(initialPrice);
-        console.log("the lessons", response.data);
         setError(null);
       })
       .catch((error) => {
@@ -75,8 +70,6 @@ function StudentLessons() {
 
   const handleBuy = async (paymentMethod, phoneNumber) => {
     try {
-      console.log("i am here and lessons.out", lessons.out);
-
       const response = await axiosInstance.post(
         `/createPayment`,
         {
@@ -126,21 +119,14 @@ function StudentLessons() {
   const handleGoToLesson = (lessonId) => {
     navigate(`/year/${yearId}/chapters/${chapterId}/lessons/${lessonId}`);
   };
+
   const handleTakeQuiz = (lessonId) => {
     navigate(`/year/${yearId}/chapters/${chapterId}/lesson/quiz/${lessonId}`);
   };
 
   return (
-    <div
-      className="container-fluid"
-      style={{
-        marginBottom: "15px",
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div className="lessons-container">
+    <div className="container-fluid lessons-container">
+      <div className="lessons-inner-container">
         <div style={{ marginTop: "2rem", marginBottom: "1rem" }}>
           {error && (
             <div className="text-center mb-4 text-danger">
@@ -159,16 +145,13 @@ function StudentLessons() {
           {lessons.length === 0 && !error ? (
             <p className="text-center">لم يتم العثور على دروس.</p>
           ) : (
-            <Col
-              style={{
-                justifyContent: "center",
-                textAlign: "center",
-                marginTop: "20px",
-              }}
+            <Row
+              className="g-4" // Bootstrap gutter spacing
+              style={{ marginTop: "20px", justifyContent: "center" }}
             >
-              {lessons.map((lesson, index) => (
-                <Col key={lesson.id} xs={12} className="lessons-col">
-                  <Card className="lesson-card" key={index}>
+              {lessons.map((lesson) => (
+                <Col key={lesson.id} xs={12} md={6} lg={4} className="mb-4">
+                  <Card className="lesson-card">
                     {!lesson.isBought && (
                       <input
                         type="checkbox"
@@ -181,10 +164,7 @@ function StudentLessons() {
                     )}
                     <Card.Img
                       variant="top"
-                      src={
-                        `${API_URL}/images/${lesson.image}` ||
-                        "holder.js/100px160"
-                      }
+                      src={`${API_URL}/images/${lesson.image}`}
                     />
                     <Card.Body>
                       <Card.Title>{lesson.name}</Card.Title>
@@ -228,7 +208,7 @@ function StudentLessons() {
                   </Card>
                 </Col>
               ))}
-            </Col>
+            </Row>
           )}
 
           <PaymentPopup
