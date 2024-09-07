@@ -9,7 +9,7 @@ import PdfView from "../components/PdfView";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
 
 function StudentLessonView() {
-  const { id } = useParams();
+  const { lessonId } = useParams();
   const [lesson, setLesson] = useState(null);
   const [isPdfVisible, setIsPdfVisible] = useState(true); // State to manage PDF visibility
   const [activePdf, setActivePdf] = useState(true); // Active state for dropdown
@@ -31,7 +31,7 @@ function StudentLessonView() {
     };
 
     getTheLesson();
-  }, [id]);
+  }, [lessonId]);
 
   const handleFullscreenChange = () => {
     if (
