@@ -149,7 +149,7 @@ function LessonView() {
             }}
           >
             <h1 style={{ marginBottom: "15px" }}>{lesson.name}</h1>
-            <PdfViewer pdf_name={lesson.description} />
+            <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} />
             {/* <p style={{ marginBottom: "50px" }}>{lesson.description}</p> */}
             <style>{keyFrames}</style>
             <div
