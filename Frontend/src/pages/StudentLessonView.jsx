@@ -22,7 +22,7 @@ function StudentLessonView() {
   useEffect(() => {
     const getTheLesson = async () => {
       try {
-        const response = await getLesson(id);
+        const response = await getLesson(lessonId);
         if (!response) throw new Error("No such lesson");
         setLesson(response);
       } catch (err) {
