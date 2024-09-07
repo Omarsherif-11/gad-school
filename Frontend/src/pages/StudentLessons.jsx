@@ -193,8 +193,8 @@ function StudentLessons() {
                         <div className="status-badge">
                           <Badge bg="warning">
                             <div>
-                              <h5>{lesson.price} جنيه مصري</h5>
-                              <p>درس + اختبار</p>
+                              <h5>درس + اختبار</h5>
+                              <p>{lesson.price} جنيه مصري</p>
                             </div>
                           </Badge>
                         </div>
