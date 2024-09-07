@@ -88,6 +88,7 @@ app.use(bodyParser.json());
 app.use("/api/videos", express.static(config.VIDEO_PATH));
 
 app.use("/api/images", express.static(config.IMAGE_PATH));
+app.use("/api/pdfs", express.static(config.PDF_PATH));
 
 app.use(cookieParser());
 

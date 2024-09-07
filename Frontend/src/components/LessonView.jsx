@@ -7,6 +7,7 @@ import ReactPlayer from "react-player";
 import "./lessonView.css";
 
 import Cookies from "js-cookie";
+import PdfViewer from "./PdfView";
 function LessonView() {
   const { id } = useParams();
 
@@ -148,7 +149,8 @@ function LessonView() {
             }}
           >
             <h1 style={{ marginBottom: "15px" }}>{lesson.name}</h1>
-            <p style={{ marginBottom: "50px" }}>{lesson.description}</p>
+            <PdfViewer pdf_name={lesson.description} />
+            {/* <p style={{ marginBottom: "50px" }}>{lesson.description}</p> */}
             <style>{keyFrames}</style>
             <div
               className="container-fluid"
