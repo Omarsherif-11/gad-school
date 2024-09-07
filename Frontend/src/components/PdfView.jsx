@@ -1,14 +1,11 @@
 import React from "react";
+import "./PDFView.css";
 
 const PDFView = ({ url }) => {
   return (
-    <iframe
-      src={url}
-      width="100%"
-      height="100vh"
-      style={{ border: "none" }}
-      title="PDF Viewer"
-    />
+    <div className="pdf-viewer-container">
+      <iframe src={url} className="pdf-viewer" title="PDF Viewer" />
+    </div>
   );
 };
 

@@ -123,101 +123,109 @@ function LessonView() {
 
   console.log(API_URL);
 
-  return (
-    <>
-      <div
-        className="container-fluid"
-        style={{
-          marginBottom: "15px",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        {lesson && (
-          <div
-            className="container-fluid"
-            style={{
-              marginBottom: "15px",
-              alignContent: "center",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              flexDirection: "column",
-              overflow: "hidden",
-            }}
-          >
-            <h1 style={{ marginBottom: "15px" }}>{lesson.name}</h1>
-            <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} />
-            {/* <p style={{ marginBottom: "50px" }}>{lesson.description}</p> */}
-            <style>{keyFrames}</style>
-            <div
-              className="container-fluid"
-              ref={containerRef}
-              style={{
-                marginBottom: "15px",
-                alignContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-                justifyContent: "center",
-                display: "flex",
-                flexDirection: "column",
-                width: "75%",
-                height: "auto",
-                position: "relative",
-                padding: 0,
-              }}
-            >
-              <ReactPlayer
-                ref={playerRef}
-                url={`${API_URL}/videos/${lesson.video}`}
-                controls
-                width="100%"
-                height="100%"
-                config={{
-                  file: {
-                    attributes: {
-                      controlsList: "nodownload", // Prevent download
-                      disablePictureInPicture: true, // Disable PiP
-                    },
-                  },
-                }}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  position: "center",
-                  padding: 0,
-                }}
-                onPlay={handleEnterFullscreen}
-              />
-              {isFullscreen && (
-                <p
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    width: "100%",
-                    height: "100%",
-                    zIndex: 9999,
-                    fontSize: "30px",
-                    animation: "moveOverlay 10s linear infinite",
-                    padding: 0,
-                  }}
-                >
-                  {Cookies.get("email")}
-                </p>
-              )}
-            </div>
-            <br></br>
-            <button className="btn btn-success btn-lg" onClick={goToQuiz}>
-              الكويز الخاص بالدرس
-            </button>
-          </div>
-        )}
-      </div>
-    </>
-  );
+   return (
+     <>
+       <div
+         className="container-fluid"
+         style={{
+           marginBottom: "15px",
+           alignContent: "center",
+           alignItems: "center",
+           justifyContent: "center",
+           textAlign: "center",
+         }}
+       >
+         {lesson && (
+           <div
+             className="container-fluid"
+             style={{
+               marginBottom: "15px",
+               alignContent: "center",
+               alignItems: "center",
+               justifyContent: "center",
+               display: "flex",
+               flexDirection: "column",
+               overflow: "hidden",
+             }}
+           >
+             <h1 style={{ marginBottom: "15px" }}>{lesson.name}</h1>
+             <div
+               className="pdf-viewer-container"
+               style={{
+                 width: "75%", // Match the width of the video container
+                 marginBottom: "15px",
+               }}
+             >
+               <PdfViewer url={`${API_URL}/pdfs/${lesson.description}`} />
+             </div>
+             {/* <p style={{ marginBottom: "50px" }}>{lesson.description}</p> */}
+             <style>{keyFrames}</style>
+             <div
+               className="container-fluid"
+               ref={containerRef}
+               style={{
+                 marginBottom: "15px",
+                 alignContent: "center",
+                 alignItems: "center",
+                 textAlign: "center",
+                 justifyContent: "center",
+                 display: "flex",
+                 flexDirection: "column",
+                 width: "75%", // Ensure this matches with PDF width
+                 height: "auto",
+                 position: "relative",
+                 padding: 0,
+               }}
+             >
+               <ReactPlayer
+                 ref={playerRef}
+                 url={`${API_URL}/videos/${lesson.video}`}
+                 controls
+                 width="100%"
+                 height="100%"
+                 config={{
+                   file: {
+                     attributes: {
+                       controlsList: "nodownload", // Prevent download
+                       disablePictureInPicture: true, // Disable PiP
+                     },
+                   },
+                 }}
+                 style={{
+                   maxWidth: "100%",
+                   maxHeight: "100%",
+                   position: "center",
+                   padding: 0,
+                 }}
+                 onPlay={handleEnterFullscreen}
+               />
+               {isFullscreen && (
+                 <p
+                   style={{
+                     position: "absolute",
+                     top: "50%",
+                     left: "50%",
+                     width: "100%",
+                     height: "100%",
+                     zIndex: 9999,
+                     fontSize: "30px",
+                     animation: "moveOverlay 10s linear infinite",
+                     padding: 0,
+                   }}
+                 >
+                   {Cookies.get("email")}
+                 </p>
+               )}
+             </div>
+             <br />
+             <button className="btn btn-success btn-lg" onClick={goToQuiz}>
+               الكويز الخاص بالدرس
+             </button>
+           </div>
+         )}
+       </div>
+     </>
+   );
 }
 
 export default LessonView;
