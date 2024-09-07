@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 import PdfViewer from "./PdfView";
 import PdfView2 from "./PdfView2";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
-import PdfView2 from "./PdfView2";
 
 function LessonView() {
   const { id } = useParams();
