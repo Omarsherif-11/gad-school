@@ -1,8 +1,8 @@
 import { Document, Page } from "react-pdf";
-import "./PdfViewer.css";
+import "./PdfView.css";
 import { API_URL } from "../api/auth";
 
-function PdfViewer({ pdf_name }) {
+function PdfView({ pdf_name }) {
   return (
     <div className="pdf-viewer">
       <Document file={`${API_URL}/pdfs/${pdf_name}`}>
@@ -12,4 +12,4 @@ function PdfViewer({ pdf_name }) {
   );
 }
 
-export default PdfViewer;
+export default PdfView;
