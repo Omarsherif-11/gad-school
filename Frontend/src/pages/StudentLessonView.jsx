@@ -1,37 +1,30 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { getLesson } from "../api/auth";
-import Col from "react-bootstrap/esm/Col";
-import Button from "react-bootstrap/Button";
-import "./StudentLessonView.css";
-import Cookies from "js-cookie";
+import { useEffect, useState, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { getLesson, API_URL } from "../api/auth";
 import React from "react";
 import ReactPlayer from "react-player";
-import { useRef } from "react";
-import { API_URL } from "../api/auth";
-import PdfView from "../components/PdfView";
+import "./lessonView.css";
+import Cookies from "js-cookie";
+import PdfView from "./PdfView";
+import PdfView2 from "./PdfView2";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
 
-function StudentLessonView() {
-  const { lessonId } = useParams();
-  const navigate = useNavigate();
+function LessonView() {
+  const { id } = useParams();
   const [lesson, setLesson] = useState(null);
-
-  const [isPdfVisible, setIsPdfVisible] = useState(true);
+  const [isPdfVisible, setIsPdfVisible] = useState(true); // State to manage PDF visibility
   const [activePdf, setActivePdf] = useState(true); // Active state for dropdown
-
-  const togglePdfVisibility = () => {
-    setActivePdf(!activePdf);
-    setIsPdfVisible(!isPdfVisible);
-  };
+  const navigate = useNavigate();
+  const containerRef = useRef(null);
+  const playerRef = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const getTheLesson = async () => {
       try {
-        const response = await getLesson(lessonId);
-
+        const response = await getLesson(id);
         if (!response) throw new Error("No such lesson");
-
         setLesson(response);
       } catch (err) {
         alert(err.message);
@@ -39,16 +32,8 @@ function StudentLessonView() {
     };
 
     getTheLesson();
-  }, [lessonId]);
+  }, [id]);
 
-  const handleContextMenu = (e) => {
-    e.preventDefault();
-  };
-  const containerRef = useRef(null); // Reference to the container div
-  const playerRef = useRef(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  // Handle fullscreen change
   const handleFullscreenChange = () => {
     if (
       document.fullscreenElement === containerRef.current ||
@@ -90,7 +75,6 @@ function StudentLessonView() {
     };
   }, [lesson]);
 
-  // Enter fullscreen
   const handleEnterFullscreen = () => {
     if (containerRef.current.requestFullscreen) {
       containerRef.current.requestFullscreen();
@@ -104,18 +88,16 @@ function StudentLessonView() {
   };
 
   const keyFrames = `@keyframes moveOverlay {
-   0% {
-    transform: translateX(-90%); /* Start off-screen to the left */
-  
-  50% {
-    transform: translateX(90%); /* Move off-screen to the right */
-  }
-  100% {
-    transform: translateX(-90%); /* Return to starting position */
-  }
-}`;
-
-  const [playing, setPlaying] = useState(false);
+    0% {
+      transform: translateX(-90%);
+    }
+    50% {
+      transform: translateX(90%);
+    }
+    100% {
+      transform: translateX(-90%);
+    }
+  }`;
 
   const handlePlayPause = () => {
     if (playerRef.current) {
@@ -130,114 +112,140 @@ function StudentLessonView() {
     }
   };
 
+  // Function to toggle PDF visibility
+  const togglePdfVisibility = () => {
+    setActivePdf(!activePdf);
+    setIsPdfVisible(!isPdfVisible);
+  };
+
   return (
-    <div className="lesson-container">
-      {lesson && (
-        <Col className="lesson-col">
-          <div className="lesson-card">
-            <h1 className="lesson-title">{lesson.name}</h1>
-            <p className="lesson-description">{lesson.description}</p>
-            <div className="video-container" onContextMenu={handleContextMenu}>
+    <>
+      <div
+        className="container-fluid"
+        style={{
+          marginBottom: "15px",
+          alignContent: "center",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
+        {lesson && (
+          <div
+            className="container-fluid"
+            style={{
+              marginBottom: "15px",
+              alignContent: "center",
+              alignItems: "center",
+              justifyContent: "center",
+              display: "flex",
+              flexDirection: "column",
+              overflow: "hidden",
+            }}
+          >
+            <h1 style={{ marginBottom: "15px" }}>{lesson.name}</h1>
+
+            {/* PDF Toggle Header */}
+            <div
+              className="pdf-header"
+              onClick={togglePdfVisibility}
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "16px",
+              }}
+            >
+              <h3 style={{ margin: "0" }}>الشرح </h3>
+              <span style={{ marginLeft: "10px", marginRight: "10px" }}>
+                {activePdf ? <FaChevronUp /> : <FaChevronDown />}
+              </span>
+            </div>
+
+            {/* Conditionally render PdfViewer based on isPdfVisible state */}
+            {isPdfVisible && (
               <div
-                className="pdf-header"
-                onClick={togglePdfVisibility}
+                className="pdf-viewer-container"
                 style={{
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "16px",
+                  width: "75%",
+                  marginBottom: "15px",
                 }}
               >
-                <h3 style={{ margin: "0" }}>الشرح </h3>
-                <span style={{ marginLeft: "10px", marginRight: "10px" }}>
-                  {activePdf ? <FaChevronUp /> : <FaChevronDown />}
-                </span>
+                <PdfView url={`${API_URL}/pdfs/${lesson.description}`} />
+                {/* <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} /> */}
               </div>
+            )}
 
-              {/* Conditionally render PdfViewer based on isPdfVisible state */}
-              {isPdfVisible && (
-                <div
-                  className="pdf-viewer-container"
-                  style={{
-                    width: "75%",
-                    marginBottom: "15px",
-                  }}
-                >
-                  <PdfView url={`${API_URL}/pdfs/${lesson.description}`} />
-                  {/* <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} /> */}
-                </div>
-              )}
-              <style>{keyFrames}</style>
-              <div
-                className="container-fluid"
-                ref={containerRef}
+            <style>{keyFrames}</style>
+            <div
+              className="container-fluid"
+              ref={containerRef}
+              style={{
+                marginBottom: "15px",
+                alignContent: "center",
+                alignItems: "center",
+                textAlign: "center",
+                justifyContent: "center",
+                display: "flex",
+                flexDirection: "column",
+                width: "75%",
+                height: "auto",
+                position: "relative",
+                padding: 0,
+              }}
+            >
+              <ReactPlayer
+                ref={playerRef}
+                url={`${API_URL}/videos/${lesson.video}`}
+                controls
+                width="100%"
+                height="100%"
+                config={{
+                  file: {
+                    attributes: {
+                      controlsList: "nodownload",
+                      disablePictureInPicture: true,
+                    },
+                  },
+                }}
                 style={{
-                  marginBottom: "15px",
-                  alignContent: "center",
-                  alignItems: "center",
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "75%",
-                  height: "auto",
-                  position: "relative",
+                  maxWidth: "100%",
+                  maxHeight: "100%",
+                  position: "center",
                   padding: 0,
                 }}
-              >
-                <ReactPlayer
-                  ref={playerRef}
-                  url={`${API_URL}/videos/${lesson.video}`}
-                  controls
-                  width="100%"
-                  height="100%"
-                  config={{
-                    file: {
-                      attributes: {
-                        controlsList: "nodownload", // Prevent download
-                        disablePictureInPicture: true, // Disable PiP
-                      },
-                    },
-                  }}
+                onPlay={handleEnterFullscreen}
+              />
+              {isFullscreen && (
+                <p
                   style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    position: "center",
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    width: "100%",
+                    height: "100%",
+                    zIndex: 9999,
+                    fontSize: "30px",
+                    animation: "moveOverlay 10s linear infinite",
                     padding: 0,
                   }}
-                  onPlay={handleEnterFullscreen}
-                />
-                {isFullscreen && (
-                  <p
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      width: "100%",
-                      height: "100%",
-                      zIndex: 9999,
-                      fontSize: "30px",
-                      animation: "moveOverlay 10s linear infinite",
-                      padding: 0,
-                    }}
-                  >
-                    {Cookies.get("email")}
-                  </p>
-                )}
-              </div>
+                >
+                  {Cookies.get("email")}
+                </p>
+              )}
             </div>
-            <Button
+            <br />
+            <button
+              className="btn btn-success btn-lg"
               onClick={() => navigate(-1)}
-              aria-label="Back"
-              className="back-button"
             >
-              الرجوع
-            </Button>
+              الرجوع{" "}
+            </button>
           </div>
-        </Col>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 
-export default StudentLessonView;
+export default LessonView;
