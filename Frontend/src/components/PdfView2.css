@@ -1,20 +1,53 @@
+/* PdfViewer.css */
+
 .pdf-viewer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 100%;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-info {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.pdf-document {
   width: 100%;
-  height: 100%;
-  overflow: auto; /* Enable scrollbars */
+  max-width: 600px;
+  overflow-x: hidden;
 }
 
-.pdf-viewer-container canvas {
-  width: 100%; /* Make canvas width responsive */
-  height: auto; /* Maintain aspect ratio */
+@media only screen and (max-width: 768px) {
+  .pdf-viewer-container {
+    padding: 5px;
+  }
+
+  .page-info {
+    font-size: 14px;
+  }
+
+  .pdf-document {
+    width: calc(100vw - 40px); /* Provide some margin on mobile */
+  }
 }
 
+@media only screen and (max-width: 480px) {
+  .pdf-viewer-container {
+    padding: 5px;
+  }
 
-.pdf-div{
-  padding: 50px;
-  background-color: #dedede;
-  margin-top: 50px;
-}
-canvas.react-pdf__Page__canvas {
-  margin-bottom: 50px;
+  .page-info {
+    font-size: 12px;
+  }
+
+  .pdf-document {
+    width: calc(100vw - 20px); /* Provide less margin on smaller screens */
+  }
 }

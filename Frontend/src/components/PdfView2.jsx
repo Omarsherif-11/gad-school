@@ -98,25 +98,16 @@
 
 // export default PDFViewer;
 
+import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "./PdfView2.css"; // Import the CSS file
 
-import { useState } from "react";
-import { Document, Page ,pdfjs} from "react-pdf";
-
-//Failed to load module script: The server responded with a non-JavaScript MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.Understand this error
-// index-Dn14DvVh.js:115 Warning: Setting up fake worker.
-// pdf.worker.min.js:1 Failed to load module script: Expected a JavaScript module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.
-
-// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-//   "pdfjs-dist/build/pdf.worker.min.mjs",
-//   import.meta.url
-// ).toString();
-
-
-
+// Set the workerSrc for PDF.js
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
-function PdfView2(url) {
-  const [numPages, setNumPages] = useState();
+function PdfView2({ url }) {
+  const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
   function onDocumentLoadSuccess({ numPages }) {
@@ -124,24 +115,27 @@ function PdfView2(url) {
   }
 
   return (
-    <div className="pdf-div">
-      <p>
+    <div className="pdf-viewer-container">
+      <p className="page-info">
         Page {pageNumber} of {numPages}
       </p>
-      <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-        {Array.apply(null, Array(numPages))
-          .map((x, i) => i + 1)
-          .map((page) => {
-            return (
-              <Page
-                pageNumber={page}
-                renderTextLayer={false}
-                renderAnnotationLayer={false}
-              />
-            );
-          })}
+      <Document
+        className="pdf-document"
+        file={url}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        {Array.from(new Array(numPages), (el, index) => (
+          <Page
+            key={`page_${index + 1}`}
+            pageNumber={index + 1}
+            width={window.innerWidth > 768 ? 600 : window.innerWidth - 40} // Responsive width
+            renderTextLayer={false}
+            renderAnnotationLayer={false}
+          />
+        ))}
       </Document>
     </div>
   );
 }
+
 export default PdfView2;
