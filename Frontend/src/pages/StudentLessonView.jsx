@@ -6,12 +6,13 @@ import ReactPlayer from "react-player";
 import "./StudentLessonView.css";
 import Cookies from "js-cookie";
 import PdfView from "../components/PdfView";
+import PdfView2 from "../components/PdfView2";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Importing icons
 
 function StudentLessonView() {
   const { lessonId } = useParams();
   const [lesson, setLesson] = useState(null);
-  const [isPdfVisible, setIsPdfVisible] = useState(true); // State to manage PDF visibility
+  const [isPdfVisible, setIsPdfVisible] = useState(false); // State to manage PDF visibility
   const [activePdf, setActivePdf] = useState(true); // Active state for dropdown
   const navigate = useNavigate();
   const containerRef = useRef(null);
@@ -170,8 +171,8 @@ function StudentLessonView() {
                   marginBottom: "15px",
                 }}
               >
-                <PdfView url={`${API_URL}/pdfs/${lesson.description}`} />
-                {/* <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} /> */}
+                {/* <PdfView url={`${API_URL}/pdfs/${lesson.description}`} /> */}
+                <PdfView2 url={`${API_URL}/pdfs/${lesson.description}`} />
               </div>
             )}
 
