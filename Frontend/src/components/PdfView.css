@@ -1,15 +1,15 @@
 .pdf-viewer-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Adjust the height as needed */
-  overflow: auto; /* Ensure no scrollbars appear */
+  height: 100vh; 
+  overflow: auto; 
 }
 
 .pdf-viewer {
   width: 100%;
   height: 100%;
   border: none;
-  user-select: none; /* Disable text selection */
+  user-select: none;
   /* pointer-events: none; Disable interactions */
 }
 
