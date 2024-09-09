@@ -740,7 +740,7 @@ async function submitQuiz(req, res) {
 
     const promises = answers.map(async ({ question_id, answer_id }) => {
       const questionId = parseInt(question_id, 10);
-      const choiceId = answer_id;
+      const choiceId = parseInt(answer_id, 10);
 
       let studentAnswer = await StudentAnswer.findOne({
         where: {

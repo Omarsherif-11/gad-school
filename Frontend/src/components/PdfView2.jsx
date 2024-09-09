@@ -1,53 +1,40 @@
-// import React, { useEffect, useRef } from "react";
-// import { pdfjs } from "react-pdf";
-// import { pdfjs } from "pdfjs-dist";
-// import "pdfjs-dist/webpack";
-// import "./PdfView2.css";
-// const PdfView2 = ({ url }) => {
-//   const containerRef = useRef(null);
+import React, { useEffect, useRef } from "react";
+import * as pdfjsLib from "pdfjs-dist/build/pdf";
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.js?worker";
 
-//   useEffect(() => {
-//     const loadPdf = async () => {
-//       pdfjs.GlobalWorkerOptions.workerSrc =
-//         "../../../node_modules/pdfjs-dist/build/pdf.worker.min.js";
+// Set the workerSrc for pdf.js
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
-//       const loadingTask = pdfjs.getDocument(url);
-//       const pdf = await loadingTask.promise;
+const PdfView = ({ url }) => {
+  const canvasRef = useRef(null);
 
-//       const pageNumber = 1;
-//       const page = await pdf.getPage(pageNumber);
+  useEffect(() => {
+    const loadingTask = pdfjsLib.getDocument(url);
+    loadingTask.promise.then(
+      (pdf) => {
+        pdf.getPage(1).then((page) => {
+          const scale = 1.5;
+          const viewport = page.getViewport({ scale });
 
-//       const scale = 1.5;
-//       const viewport = page.getViewport({ scale });
-//       const canvas = document.createElement("canvas");
-//       const context = canvas.getContext("2d");
-//       canvas.height = viewport.height;
-//       canvas.width = viewport.width;
+          const canvas = canvasRef.current;
+          const context = canvas.getContext("2d");
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
 
-//       containerRef.current.appendChild(canvas);
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport,
+          };
+          page.render(renderContext);
+        });
+      },
+      (reason) => {
+        console.error(reason);
+      }
+    );
+  }, [url]);
 
-//       const renderContext = {
-//         canvasContext: context,
-//         viewport,
-//       };
+  return <canvas ref={canvasRef} />;
+};
 
-//       await page.render(renderContext).promise;
-//     };
-
-//     loadPdf();
-//   }, [url]);
-
-//   return (
-//     <div
-//       ref={containerRef}
-//       style={{
-//         width: "100%",
-//         height: "100%",
-//         overflow: "auto", // Enable scrollbars if necessary
-//         position: "relative",
-//       }}
-//     />
-//   );
-// };
-
-// export default PdfView2;
+export default PdfView;
