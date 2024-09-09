@@ -16,14 +16,16 @@
 
 // PdfViewer.jsx
 import React, { useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 
-// Set up the worker file from a CDN
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs`;
-
-const PdfView2 = ({ url }) => {
+function PdfView2() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+    setPageNumber(1);
+  }
 
   // Callback when the PDF is loaded
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -31,17 +33,12 @@ const PdfView2 = ({ url }) => {
   };
 
   return (
-    <div className="pdf-viewer-container">
+    <div>
       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <div className="pagination">
-        {Array.from({ length: numPages }, (_, index) => (
-          <button key={index} onClick={() => setPageNumber(index + 1)}>
-            {index + 1}
-          </button>
+        {Array.from(new Array(numPages), (el, index) => (
+          <Page key={`page_${index + 1}`} pageNumber={index + 1} />
         ))}
-      </div>
+      </Document>
     </div>
   );
 };
