@@ -27,10 +27,7 @@ function PdfView2() {
     setPageNumber(1);
   }
 
-  // Callback when the PDF is loaded
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
-  };
+
 
   return (
     <div>
