@@ -1,39 +1,15 @@
-import React, { useEffect, useRef } from "react";
-import * as pdfjsLib from "pdfjs-dist/build/pdf";
+// App.jsx
+import React from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import MyDocument from "./MyDocument";
 
-// Set the workerSrc to use Mozilla's hosted version
-pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
+const PdfView2 = ({ url }) => (
+  <div className="App">
+    <h1>PDF Generator Example</h1>
+    <PDFDownloadLink document={<MyDocument />} fileName={url}>
+      {({ loading }) => (loading ? "Loading document..." : "Download PDF")}
+    </PDFDownloadLink>
+  </div>
+);
 
-const PdfView = ({ url }) => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(
-      (pdf) => {
-        pdf.getPage(1).then((page) => {
-          const scale = 1.5;
-          const viewport = page.getViewport({ scale });
-
-          const canvas = canvasRef.current;
-          const context = canvas.getContext("2d");
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-
-          const renderContext = {
-            canvasContext: context,
-            viewport: viewport,
-          };
-          page.render(renderContext);
-        });
-      },
-      (reason) => {
-        console.error(reason);
-      }
-    );
-  }, [url]);
-
-  return <canvas ref={canvasRef} />;
-};
-
-export default PdfView;
+export default PdfView2;
