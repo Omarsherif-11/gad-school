@@ -5,17 +5,48 @@
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
-  padding: 10px;
+  padding: 20px;
   max-width: 100%;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.pdf-controls button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.pdf-controls button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.pdf-controls button:hover:not(:disabled) {
+  background-color: #45a049;
 }
 
 .page-info {
-  margin-bottom: 10px;
   font-size: 16px;
   color: #333;
+  margin: 0 20px;
 }
 
 .pdf-document {
@@ -24,9 +55,21 @@
   overflow-x: hidden;
 }
 
+.loading-indicator {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-top: 20px;
+}
+
 @media only screen and (max-width: 768px) {
   .pdf-viewer-container {
-    padding: 5px;
+    padding: 10px;
+  }
+
+  .pdf-controls button {
+    padding: 8px 16px;
+    font-size: 12px;
   }
 
   .page-info {

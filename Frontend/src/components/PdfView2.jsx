@@ -114,28 +114,39 @@ function PdfView2({ url }) {
     setNumPages(numPages);
   }
 
+  const handlePreviousPage = () => setPageNumber(Math.max(pageNumber - 1, 1));
+  const handleNextPage = () =>
+    setPageNumber(Math.min(pageNumber + 1, numPages));
+
   return (
     <div className="pdf-viewer-container">
-      <p className="page-info">
-        Page {pageNumber} of {numPages}
-      </p>
+      <div className="pdf-controls">
+        <button onClick={handlePreviousPage} disabled={pageNumber <= 1}>
+          Previous
+        </button>
+        <p className="page-info">
+          Page {pageNumber} of {numPages}
+        </p>
+        <button onClick={handleNextPage} disabled={pageNumber >= numPages}>
+          Next
+        </button>
+      </div>
       <Document
         className="pdf-document"
         file={url}
         onLoadSuccess={onDocumentLoadSuccess}
+        loading={<div className="loading-indicator">Loading PDF...</div>}
       >
-        {Array.from(new Array(numPages), (el, index) => (
-          <Page
-            key={`page_${index + 1}`}
-            pageNumber={index + 1}
-            width={window.innerWidth > 768 ? 600 : window.innerWidth - 40} // Responsive width
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-          />
-        ))}
+        <Page
+          pageNumber={pageNumber}
+          width={window.innerWidth > 768 ? 600 : window.innerWidth - 40}
+          renderTextLayer={false}
+          renderAnnotationLayer={false}
+        />
       </Document>
     </div>
   );
 }
 
 export default PdfView2;
+
