@@ -19,7 +19,7 @@ import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
 // Set up the worker file from a CDN
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs`;
 
 const PdfView2 = ({ url }) => {
   const [numPages, setNumPages] = useState(null);
