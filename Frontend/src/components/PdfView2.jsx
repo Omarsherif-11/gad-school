@@ -42,19 +42,53 @@
 
 
 
-import React from "react";
-import { Worker, Viewer } from "@react-pdf-viewer/core";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+// import React from "react";
+// import { Worker, Viewer } from "@react-pdf-viewer/core";
+// import "@react-pdf-viewer/core/lib/styles/index.css";
+// import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
-const PDFViewer = ({ url }) => {
+// const PDFViewer = ({ url }) => {
+//   return (
+//     <div style={{ height: "100vh", width: "100%" }}>
+//       <Worker
+//         workerUrl={`https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.min.js`}
+//       >
+//         <Viewer fileUrl={url} />
+//       </Worker>
+//     </div>
+//   );
+// };
+
+// export default PDFViewer;
+
+
+import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+
+// Set the workerSrc for PDF.js
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs`;
+
+const PDFViewer = ({ pdfUrl }) => {
+  const [numPages, setNumPages] = useState(null);
+
+  const onDocumentLoadSuccess = ({ numPages }) => {
+    setNumPages(numPages);
+  };
+
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <Worker
-        workerUrl={`https://unpkg.com/pdfjs-dist@2.12.313/build/pdf.worker.min.js`}
-      >
-        <Viewer fileUrl={url} />
-      </Worker>
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+        {Array.from(new Array(numPages), (el, index) => (
+          <Page
+            key={`page_${index + 1}`}
+            pageNumber={index + 1}
+            width={window.innerWidth}
+          />
+        ))}
+      </Document>
     </div>
   );
 };
