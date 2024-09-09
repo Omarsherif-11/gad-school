@@ -69,7 +69,7 @@ import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 // Set the workerSrc for PDF.js
 pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs`;
 
-const PDFViewer = ({ pdfUrl }) => {
+const PDFViewer = ({ url }) => {
   const [numPages, setNumPages] = useState(null);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
@@ -80,7 +80,7 @@ const PDFViewer = ({ pdfUrl }) => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(new Array(numPages), (el, index) => (
           <Page
             key={`page_${index + 1}`}
