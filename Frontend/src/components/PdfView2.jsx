@@ -62,35 +62,78 @@
 // export default PDFViewer;
 
 
-import React, { useState } from "react";
-import { Document, Page, pdfjs } from "react-pdf";
-import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
-// Set the workerSrc for PDF.js
-pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js`;
+// the problem is not loading
+// import React, { useState } from "react";
+// import { Document, Page, pdfjs } from "react-pdf";
+// import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 
-const PDFViewer = ({ url }) => {
-  const [numPages, setNumPages] = useState(null);
+// // Set the workerSrc for PDF.js
+// pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js`;
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
+// const PDFViewer = ({ url }) => {
+//   const [numPages, setNumPages] = useState(null);
+
+//   const onDocumentLoadSuccess = ({ numPages }) => {
+//     setNumPages(numPages);
+//   };
+
+
+//   return (
+//     <div
+//       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+//     >
+//       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
+//         {Array.from(new Array(numPages), (el, index) => (
+//           <Page
+//             key={`page_${index + 1}`}
+//             pageNumber={index + 1}
+//             width={window.innerWidth}
+//           />
+//         ))}
+//       </Document>
+//     </div>
+//   );
+// };
+
+// export default PDFViewer;
+
+
+import { useState } from "react";
+import { Document, Page ,pdfjs} from "react-pdf";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.js",
+  import.meta.url
+).toString();
+
+function PdfView2(url) {
+  const [numPages, setNumPages] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
-  };
+  }
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div className="pdf-div">
+      <p>
+        Page {pageNumber} of {numPages}
+      </p>
       <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-        {Array.from(new Array(numPages), (el, index) => (
-          <Page
-            key={`page_${index + 1}`}
-            pageNumber={index + 1}
-            width={window.innerWidth}
-          />
-        ))}
+        {Array.apply(null, Array(numPages))
+          .map((x, i) => i + 1)
+          .map((page) => {
+            return (
+              <Page
+                pageNumber={page}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+              />
+            );
+          })}
       </Document>
     </div>
   );
-};
-
-export default PDFViewer;
+}
+export default PdfView2;

@@ -8,3 +8,13 @@
   width: 100%; /* Make canvas width responsive */
   height: auto; /* Maintain aspect ratio */
 }
+
+
+.pdf-div{
+  padding: 50px;
+  background-color: #dedede;
+  margin-top: 50px;
+}
+canvas.react-pdf__Page__canvas {
+  margin-bottom: 50px;
+}
