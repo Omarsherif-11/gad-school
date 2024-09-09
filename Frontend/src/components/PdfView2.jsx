@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 
 // Set the workerSrc to use Mozilla's hosted version
-pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "/pdf.worker.mjs";
 
 const PdfView = ({ url }) => {
   const canvasRef = useRef(null);
