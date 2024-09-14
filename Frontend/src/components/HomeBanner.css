@@ -47,6 +47,7 @@
   flex-direction: column;
   justify-content: center;
   color: var(--secondary-color);
+  margin-bottom:var(--spacing-lg);
 }
 
 .right-part h1, .right-part h2, .right-part h3, .right-part h4 {
