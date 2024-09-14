@@ -80,6 +80,8 @@
   .left-part {
     margin-right: 0;
     margin-bottom: var(--spacing-md);
+    width: 100%;
+    height: 50%;
   }
 
   .right-part h1 {
