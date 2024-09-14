@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "./HomeBanner.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import TextTypewriter from "./TextTypeWriter";
+import TextTypewriter from "./TextTypewriter";
 
 const sliderSettings = {
   dots: true,
