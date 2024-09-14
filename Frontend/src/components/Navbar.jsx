@@ -11,6 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const burgerButtonRef = useRef(null); // Ref for the burger button
 
   useEffect(() => {
     const storedUsername = Cookies.get("username");
@@ -19,7 +20,13 @@ const Navbar = () => {
     }
 
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      // Check if the click is outside the menu and the burger button
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        burgerButtonRef.current &&
+        !burgerButtonRef.current.contains(event.target)
+      ) {
         setIsMenuOpen(false);
       }
     };
@@ -31,7 +38,6 @@ const Navbar = () => {
   }, [setUsername]);
 
   const handleLogout = async () => {
-    // Implement the actual logout function
     await logoutService();
     Cookies.remove("username");
     Cookies.remove("role");
@@ -43,7 +49,7 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => {
-    if (!isMenuOpen) setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -51,7 +57,11 @@ const Navbar = () => {
       <div className="brand">
         <Link to="/">Gad School</Link>
       </div>
-      <button className="hamburger" onClick={toggleMenu}>
+      <button
+        className="hamburger"
+        onClick={toggleMenu}
+        ref={burgerButtonRef} // Add ref to the burger button
+      >
         ☰
       </button>
       <ul className={`nav-list ${isMenuOpen ? "open" : ""}`} ref={menuRef}>
