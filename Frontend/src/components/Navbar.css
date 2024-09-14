@@ -161,8 +161,9 @@
   }
 
   .nav-list.open {
-    display: flex; /* Show navigation links when menu is open */
+    display: flex; 
     transform: translateX(0);
+    max-width: 250px;
   }
 
   .nav-actions {

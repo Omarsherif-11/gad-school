@@ -43,7 +43,7 @@ const Navbar = () => {
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    if (!isMenuOpen) setIsMenuOpen(!isMenuOpen);
   };
 
   return (
