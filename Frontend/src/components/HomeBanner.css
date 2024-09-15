@@ -39,6 +39,7 @@
   height: 100%; /* Fixed height for uniform display */
   object-fit: cover;
    aspect-ratio: 1.618;
+   padding:10px;
 }
 
 .right-part {
