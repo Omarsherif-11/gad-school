@@ -3,7 +3,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const texts = [
   { text: "مدرسة جاد فى الفيزيا", tag: "h1" },
-  { text: "أ/ عبده جاد", tag: "h1" },
+  { text: "معلم أول أ/ عبده جاد", tag: "h1" },
   { text: "معلم أول فيزياء بمدرسة كفر صقر  ث. بنات", tag: "h4" },
   { text: "للتواصل: 01063572238", tag: "h2" },
 ];
