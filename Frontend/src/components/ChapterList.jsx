@@ -12,7 +12,7 @@ import ChapterCardAdmin from "../components/ChapterCardAdmin";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { UploadChapter } from "../api/auth";
-import {Col, Button} from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 
 import { axiosInstance } from "../api/auth";
@@ -123,9 +123,9 @@ function ChapterList() {
                 ))}
               </Row>
             ) : (
-              <div>
+              <Row className="justify-content-center align-items-center text-align-center">
                 <p className="text-center mt-4">لا توجد فصول بعد</p>
-              </div>
+              </Row>
             )}
           </div>
         </div>

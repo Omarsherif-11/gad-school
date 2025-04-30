@@ -9,7 +9,19 @@
   border-bottom: 1px solid var(--secondary-color);
   position: relative;
   font-family: var(--font-primary);
+  width: 100%;
 }
+
+.navbar-container {
+  width: 100%;
+  background-color: #222;
+  /* change as needed */
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0;
+  font-family: var(--font-primary);
+}
+
 
 .brand {
   font-size: 24px;
@@ -30,7 +42,7 @@
 
 
 .hamburger {
-  display: none; 
+  display: none;
   font-size: 28px;
   background: none;
   border: none;
@@ -53,7 +65,8 @@
   margin: 0;
 }
 
-.nav-item a, .navbar-button {
+.nav-item a,
+.navbar-button {
   color: var(--secondary-color);
   text-decoration: none;
   padding: var(--spacing-sm);
@@ -61,7 +74,8 @@
   border-radius: var(--button-border-radius);
 }
 
-.nav-item a:hover, .navbar-button:hover {
+.nav-item a:hover,
+.navbar-button:hover {
   color: var(--accent-color);
   background-color: rgba(71, 255, 200, 0.1);
 }
@@ -105,7 +119,8 @@
 .theme-switch {
   display: flex;
   align-items: center;
-  cursor: pointer; /* Make the icon clickable */
+  cursor: pointer;
+  /* Make the icon clickable */
 }
 
 .theme-switch .icon {
@@ -139,11 +154,13 @@
 
 @media (max-width: 768px) {
   .hamburger {
-    display: block; /* Show hamburger menu on small screens */
+    display: block;
+    /* Show hamburger menu on small screens */
   }
 
   .nav-list {
-    display: none; /* Hide navigation links on small screens */
+    display: none;
+    /* Hide navigation links on small screens */
     flex-direction: column;
     position: absolute;
     top: 60px;
@@ -161,7 +178,7 @@
   }
 
   .nav-list.open {
-    display: flex; 
+    display: flex;
     transform: translateX(0);
     max-width: 250px;
   }

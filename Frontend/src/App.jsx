@@ -29,6 +29,7 @@ import CreateQuizNew from "./components/CreateQuizNew";
 import Cookies from "js-cookie";
 import Footer from "./components/Footer";
 import EnvConfig from "./pages/EnvConfig";
+import { Nav } from "react-bootstrap";
 
 function App() {
   return (
@@ -47,9 +48,9 @@ const ThemedApp = () => {
       <GlobalStyles />
       <div>
         <Router>
-          <div className="container-fluid">
+          <Nav>
             <Navbar bg="dark" variant="dark" expand="lg" />
-          </div>
+          </Nav>
           <div
             className="container-fluid pt-5"
             style={{
