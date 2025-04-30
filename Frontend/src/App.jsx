@@ -114,9 +114,9 @@ const ThemedApp = () => {
               </Routes>
             </div>
           </div>
-          <div className="container-fluid">
+          <footer className="footer-container w-100">
             <Footer />
-          </div>
+          </footer>
         </Router>
       </div>
     </StyledThemeProvider>

@@ -14,46 +14,19 @@ const Footer = () => {
         className="d-flex flex-column align-items-center"
         style={{ marginTop: "20px" }}
       >
-        <div className="mission-statement">
+        <div className="mission-statement" style={{ fontSize: "1.6rem" }}>
           مهمتنا هى تقديم شرح بسيط على منصة بسيطة عشان نوصل لأبنائنا و إخوتنا
-        </div>
-        <div className="social-icons">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-          >
-            <FaYoutube />
-          </a>
-        </div>
-        <div className="contact-us">
-          <a
-            href="mailto:info@yourcompany.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="contact-link"
-          >
-            تواصل معنا
-          </a>
         </div>
         <hr className="footer-divider" />
 
-        <div className="love-statement">
+        <div className="love-statement" style={{ fontSize: "1.6rem" }}>
           Developed with ❤️ by{" "}
           <a
             href="https://www.linkedin.com/in/omar-sherif-747928262"
             target="_blank"
             rel="noopener noreferrer"
             className="developer-link"
+            style={{ fontSize: "1.6rem" }}
           >
             Omar
           </a>{" "}
@@ -63,6 +36,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="developer-link"
+            style={{ fontSize: "1.6rem" }}
           >
             Abdelrahim
           </a>

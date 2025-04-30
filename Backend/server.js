@@ -1,15 +1,13 @@
 const express = require("express");
 const { Sequelize } = require("sequelize");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
-const path = require("path");
 
 const cookieParser = require("cookie-parser");
 
 const config = require('../Backend/config.js');
 
-const sequelize = new Sequelize("gad", "rahim", config.DB_PASSWORD, {
+const sequelize = new Sequelize("gad", "root", config.DB_PASSWORD, {
   host: "127.0.0.1",
   dialect: "mysql",
 });
@@ -25,23 +23,13 @@ sequelize
 
 module.exports = sequelize;
 
-const Student = require("../DatabaseModels/student.js");
 
 const Abdo = require("../DatabaseModels/abdo.js");
 
-const Chapter = require("../DatabaseModels/chapter.js");
-
-const Choice = require("../DatabaseModels/choice.js");
-
 const Lesson = require("../DatabaseModels/lesson.js");
-
-const Question = require("../DatabaseModels/question.js");
-
-const Quiz = require("../DatabaseModels/quiz.js");
 
 const StudentLesson = require("../DatabaseModels/studentlesson.js");
 
-const StudentAnswer = require("../DatabaseModels/studentanswer.js");
 
 async function testConnection() {
   try {
